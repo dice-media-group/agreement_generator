@@ -1,0 +1,36 @@
+<div class="page-header">
+  <%= link_to document_contact_details_path(@document), class: 'btn btn-default' do %>
+    All Contacts
+  <% end %>
+  <%= link_to edit_contact_detail_path(@contact_detail), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show contact_detail</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Business name:</dt>
+  <dd><%= @contact_detail.business_name %></dd>
+
+  <dt>Street address 01:</dt>
+  <dd><%= @contact_detail.street_address_01 %></dd>
+
+  <dt>Business street address 02:</dt>
+  <dd><%= @contact_detail.business_street_address_02 %></dd>
+
+  <dt>Business city:</dt>
+  <dd><%= @contact_detail.business_city %></dd>
+
+  <dt>Business state:</dt>
+  <dd><%= @contact_detail.business_state %></dd>
+
+  <dt>Business postal code:</dt>
+  <dd><%= @contact_detail.business_postal_code %></dd>
+
+  <dt>Business phone:</dt>
+  <dd><%= @contact_detail.business_phone %></dd>
+
+  <dt>Name of representative:</dt>
+  <dd><%= @contact_detail.name_of_representative %></dd>
+
+</dl>

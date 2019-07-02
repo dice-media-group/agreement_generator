@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to payments_path, class: 'btn btn-default' do %>
+    All Payments
+  <% end %>
+  <%= link_to edit_payment_path(@payment), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show payment</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Date:</dt>
+  <dd><%= @payment.date %></dd>
+
+  <dt>Amount:</dt>
+  <dd><%= @payment.amount %></dd>
+
+</dl>
