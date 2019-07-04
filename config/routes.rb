@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :people
   resources :documents do
       resources :contact_details, shallow: true
       resources :scope_documents
