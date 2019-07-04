@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to scope_documents_path, class: 'btn btn-default' do %>
+    All Scope_documents
+  <% end %>
+  <%= link_to edit_scope_document_path(@scope_document), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show scope_document</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Project name:</dt>
+  <dd><%= @scope_document.project_name %></dd>
+
+  <dt>Document:</dt>
+  <dd><%= @scope_document.document %></dd>
+
+</dl>

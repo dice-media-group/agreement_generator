@@ -1,0 +1,15 @@
+<div class="page-header">
+  <%= link_to payment_schedules_path, class: 'btn btn-default' do %>
+    All Payment_schedules
+  <% end %>
+  <%= link_to edit_payment_schedule_path(@payment_schedule), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show payment_schedule</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Document:</dt>
+  <dd><%= @payment_schedule.document %></dd>
+
+</dl>

@@ -1,0 +1,46 @@
+<div class="page-header">
+  <%= link_to agreements_path, class: 'btn btn-default' do %>
+    All Agreements
+  <% end %>
+  <%= link_to edit_agreement_path(@agreement), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show agreement</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Provider rep name:</dt>
+  <dd><%= @agreement.provider_rep_name %></dd>
+
+  <dt>Provider signature:</dt>
+  <dd><%= @agreement.provider_signature %></dd>
+
+  <dt>Provider signed on:</dt>
+  <dd><%= @agreement.provider_signed_on %></dd>
+
+  <dt>Client rep name:</dt>
+  <dd><%= @agreement.client_rep_name %></dd>
+
+  <dt>Client rep signature:</dt>
+  <dd><%= @agreement.client_rep_signature %></dd>
+
+  <dt>Client signed on:</dt>
+  <dd><%= @agreement.client_signed_on %></dd>
+
+  <dt>Signature:</dt>
+  <dd><%= @agreement.signature %></dd>
+
+  <dt>Signed on:</dt>
+  <dd><%= @agreement.signed_on %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @agreement.user.first_name %><br>
+      <%= @agreement.user.email %></dd>
+
+  <dt>Document:</dt>
+  <dd><%= @agreement.document.name %></dd>
+
+  <dt>Project:</dt>
+  <dd><%= @agreement.project.name %></dd>
+
+</dl>

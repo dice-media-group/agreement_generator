@@ -1,0 +1,61 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Contacts for <%= @document.name %> </h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_document_contact_detail_path, class: 'btn btn-primary' do %>
+    (+) Create Contact
+  <% end %>
+  <div>&nbsp;</div>
+  <%= link_to document_path(@document) do %>
+    << Back to Document
+  <% end %>
+    <div>&nbsp;</div>
+
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Business name</th>
+            <th>Street address 01</th>
+            <th>Business street address 02</th>
+            <th>Business city</th>
+            <th>Business state</th>
+            <th>Business postal code</th>
+            <th>Business phone</th>
+            <th>Name of representative</th>
+            
+          
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contact_details.each do |contact_detail| %>
+        <%= content_tag :tr, id: dom_id(contact_detail), class: dom_class(contact_detail) do %>
+          
+
+                      <td><%= link_to contact_detail.business_name, contact_detail_url(contact_detail) %>   </td>
+                      <td><%= contact_detail.street_address_01 %></td>
+                      <td><%= contact_detail.business_street_address_02 %></td>
+                      <td><%= contact_detail.business_city %></td>
+                      <td><%= contact_detail.business_state %></td>
+                      <td><%= contact_detail.business_postal_code %></td>
+                      <td><%= contact_detail.business_phone %></td>
+                      <td><%= contact_detail.name_of_representative %></td>
+          
+          
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
