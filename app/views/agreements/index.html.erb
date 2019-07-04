@@ -1,0 +1,65 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Agreements</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_agreement_path, class: 'btn btn-primary' do %>
+    Add New Agreement
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Provider rep</th>
+            <th>Client rep name</th>
+            <th>Client rep signature</th>
+            <th>Client signed on</th>
+            <th>Signature</th>
+            <th>Signed on</th>
+            <th>User</th>
+            <th>Document</th>
+            <th>Project</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @agreements.each do |agreement| %>
+        <%= content_tag :tr, id: dom_id(agreement), class: dom_class(agreement) do %>
+          
+
+                      <td><%= agreement.provider_rep_name %><br />
+                          <%= agreement.provider_signature %><br>
+                          <%= agreement.provider_signed_on %></td>
+                      <td><%= agreement.client_rep_name %></td>
+                      <td><%= agreement.client_rep_signature %></td>
+                      <td><%= agreement.client_signed_on %></td>
+                      <td><%= agreement.signature %></td>
+                      <td><%= agreement.signed_on %></td>
+                      <td>
+                          <%= agreement.user.first_name %><br>
+                          <%= agreement.user.email %>
+
+                      </td>
+                      <td><%= agreement.document.name %></td>
+                      <td><%= agreement.project.name %></td>
+          
+          
+            <td><%= link_to 'Show', agreement %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

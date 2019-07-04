@@ -23,6 +23,8 @@ class ContactDetailsController < ApplicationController
 
   # GET /contact_details/1/edit
   def edit
+        @document = @contact_detail.document
+
   end
 
   # POST /contact_details
