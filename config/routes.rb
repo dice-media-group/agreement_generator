@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :sections
   resources :deliverables
   resources :projects
   resources :agreements

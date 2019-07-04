@@ -1,0 +1,21 @@
+<div class="page-header">
+  <%= link_to sections_path, class: 'btn btn-default' do %>
+    All Sections
+  <% end %>
+  <%= link_to edit_section_path(@section), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show section</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <dd><%= @section.title %></dd>
+
+  <dt>Body:</dt>
+  <dd><%= @section.body %></dd>
+
+  <dt>Boilerplate text:</dt>
+  <dd><%= @section.boilerplate_text %></dd>
+
+</dl>

@@ -1,0 +1,44 @@
+<%= form_with(model: section, local: true) do |form| %>
+  <% if section.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(section.errors.count, "error") %> prohibited this section from being saved:</h2>
+
+      <ul>
+      <% section.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :boilerplate_text %>
+    <%= form.check_box :boilerplate_text, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if section.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', section, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if section.persisted? %>
+      <%= link_to "Cancel", section, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", sections_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
