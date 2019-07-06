@@ -1,4 +1,6 @@
 class DeliverablesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_parent, only: [:index, :new]
   before_action :set_deliverable, only: [:show, :edit, :update, :destroy]
 
   # GET /deliverables
@@ -14,7 +16,9 @@ class DeliverablesController < ApplicationController
 
   # GET /deliverables/new
   def new
-    @deliverable = Deliverable.new
+    @agreement = Agreement.find(params[:agreement_id])
+
+    @deliverable = @agreement.deliverables.new
   end
 
   # GET /deliverables/1/edit
@@ -24,7 +28,7 @@ class DeliverablesController < ApplicationController
   # POST /deliverables
   # POST /deliverables.json
   def create
-    @deliverable = Deliverable.new(deliverable_params)
+    @deliverable = @agreement.deliverables.new(deliverable_params)
 
     respond_to do |format|
       if @deliverable.save
@@ -65,6 +69,9 @@ class DeliverablesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_deliverable
       @deliverable = Deliverable.find(params[:id])
+    end
+    def set_parent
+      @agreement = Agreement.find(params[:agreement_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

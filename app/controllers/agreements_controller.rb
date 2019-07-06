@@ -1,4 +1,5 @@
 class AgreementsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
 
   # GET /agreements
