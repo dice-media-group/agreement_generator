@@ -43,4 +43,25 @@
   <dt>Project:</dt>
   <dd><%= @agreement.project.name %></dd>
 
+  <dt>
+    Deliverables:         
+    <%= link_to new_agreement_deliverable_path(@agreement) do %>
+      (+)
+    <% end %>
+</dt>
+  <dd>
+    <% if @agreement.deliverables.count > 0 %>
+      <ul class="agreements">
+        <% @agreement.deliverables.each do |deliverable| %>
+          <li> <%= deliverable.body %> </li>
+        <% end -%>
+      </ul>
+      
+    <% else %>
+        deliverable
+
+    <% end %>
+  </dd>
+
+  
 </dl>

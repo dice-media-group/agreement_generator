@@ -1,6 +1,6 @@
 class DeliverablesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_parent, only: [:index, :new]
+  before_action :set_parent, only: [:index, :new, :create]
   before_action :set_deliverable, only: [:show, :edit, :update, :destroy]
 
   # GET /deliverables
@@ -76,6 +76,6 @@ class DeliverablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deliverable_params
-      params.require(:deliverable).permit(:document_id, :body)
+      params.require(:deliverable).permit(:agreement_id, :body)
     end
 end
