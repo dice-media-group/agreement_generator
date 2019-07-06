@@ -1,8 +1,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :sections
+  resources :deliverables
   resources :projects
-  resources :agreements
+  resources :agreements do
+    resources :deliverables, shallow: true
+  end
   resources :people
   resources :documents do
       resources :contact_details, shallow: true
