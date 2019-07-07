@@ -39,13 +39,19 @@
 
   <div class="form-group">
     <%= form.label "Document Type  " %>
-    <%= form.select(:document_id, 
-        options_from_collection_for_select(Document.all, :id, :name), 
-        include_blank: "Select Document") %>
+    <%= form.collection_select(:document_id, 
+        Document.all, 
+        :id, 
+        :name, 
+        :prompt => 'Select Document') %>
   </div>
   <div class="form-group">
     <%= form.label "Project  " %>
-    <%= form.select(:project_id, options_from_collection_for_select(Project.all, :id, :name), include_blank: "Select Project") %>
+    <%= form.collection_select(:project_id, 
+        Project.all, 
+        :id, 
+        :name, 
+        :prompt => 'Select Project') %>
   </div>
 
 <!--  -->
