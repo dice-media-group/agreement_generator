@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to deliverables_path, class: 'btn btn-default' do %>
+    All Deliverables
+  <% end %>
+  <%= link_to edit_deliverable_path(@deliverable), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show deliverable</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Agreement:</dt>
+  <dd><%= @deliverable.agreement %></dd>
+
+  <dt>Body:</dt>
+  <dd><%= @deliverable.body %></dd>
+
+</dl>
