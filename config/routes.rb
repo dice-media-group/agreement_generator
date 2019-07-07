@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :agreements do
     resources :deliverables, shallow: true
+    resources :scheduled_payments, shallow: true
   end
   resources :people
   resources :documents do

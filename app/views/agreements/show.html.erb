@@ -33,9 +33,9 @@
   <dt>Signed on:</dt>
   <dd><%= @agreement.signed_on %></dd>
 
-  <dt>User:</dt>
-  <dd><%= @agreement.user.first_name %><br>
-      <%= @agreement.user.email %></dd>
+  <dt>Author:</dt>
+  <dd><%= @agreement.user.first_name %> 
+      (<%= mail_to @agreement.user.email %>)</dd>
 
   <dt>Document:</dt>
   <dd><%= @agreement.document.name %></dd>
@@ -45,7 +45,7 @@
 
   <dt>
     Deliverables:         
-    <%= link_to new_agreement_deliverable_path(@agreement) do %>
+    <%= link_to edit_agreement_path(@agreement, :anchor => "deliverables") do %>
       (+)
     <% end %>
 </dt>
@@ -58,7 +58,67 @@
       </ul>
       
     <% else %>
-        no deliverables
+    <%= link_to edit_agreement_path(@agreement, :anchor => "deliverables") do %>
+      Add a Deliverable
+    <% end %>
+
+    <% end %>
+  </dd>
+
+  
+</dl>
+  <dt>
+  </dt>
+  <dd>
+    <% if @agreement.scheduled_payments.count > 0 %>
+      <table class="payments-table">
+        <thead>
+            <tr>
+                <th colspan="2">
+                  Payment Schedule
+                  <%= link_to edit_agreement_path(@agreement, 
+                    :anchor => "scheduled-payments") do %>
+                    (+)
+                  <% end %>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @agreement.scheduled_payments.each do |scheduled_payment| %>
+
+            <tr>
+                <td><%= scheduled_payment.due_date.strftime("%d %b %Y") %></td>
+                <td><%= number_to_currency(scheduled_payment.amount) %></td>
+            </tr>
+          <% end -%>
+
+        </tbody>
+      </table>
+      
+    <% else %>
+      <table class="payments-table">
+        <thead>
+            <tr>
+                <th >
+                  Payment Schedule
+                  <%= link_to edit_agreement_path(@agreement, 
+                    :anchor => "scheduled-payments") do %>
+                    (+)
+                  <% end %>
+
+                </th>
+            </tr>
+            <tr><td>No Payment scheduled</td></tr>
+            
+        </thead>
+        <tbody>
+
+            <tr>
+            </tr>
+
+        </tbody>
+      </table>
 
     <% end %>
   </dd>

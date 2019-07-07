@@ -39,17 +39,23 @@
 
   <div class="form-group">
     <%= form.label "Document Type  " %>
-    <%= form.select(:document_id, 
-        options_from_collection_for_select(Document.all, :id, :name), 
-        include_blank: "Select Document") %>
+    <%= form.collection_select(:document_id, 
+        Document.all, 
+        :id, 
+        :name, 
+        :prompt => 'Select Document') %>
   </div>
   <div class="form-group">
     <%= form.label "Project  " %>
-    <%= form.select(:project_id, options_from_collection_for_select(Project.all, :id, :name), include_blank: "Select Project") %>
+    <%= form.collection_select(:project_id, 
+        Project.all, 
+        :id, 
+        :name, 
+        :prompt => 'Select Project') %>
   </div>
 
 <!--  -->
-  <h4>Deliverables</h4>
+  <h4 id="deliverables">Deliverables</h4>
   <div data-controller="nested-form">
     <template data-target="nested-form.template">
       <%= form.fields_for :deliverables, Deliverable.new, child_index: 'NEW_RECORD' do |deliverable| %>
@@ -63,6 +69,26 @@
 
     <div class="mb-3" data-target="nested-form.links">
       <%= link_to "Add Deliverable", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association" } %>
+    </div>
+  </div>
+
+  <!--  -->
+
+<!--  -->
+  <h4 id="scheduled-payments">Scheduled Payments</h4>
+  <div data-controller="nested-form">
+    <template data-target="nested-form.template">
+      <%= form.fields_for :scheduled_payments, ScheduledPayment.new, child_index: 'NEW_RECORD' do |scheduled_payment| %>
+        <%= render "scheduled_payment_fields", form: scheduled_payment %>
+      <% end %>
+    </template>
+
+    <%= form.fields_for :scheduled_payments do |scheduled_payment| %>
+      <%= render "scheduled_payment_fields", form: scheduled_payment %>
+    <% end %>
+
+    <div class="mb-3" data-target="nested-form.links">
+      <%= link_to "Add Scheduled Payment", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association" } %>
     </div>
   </div>
 
