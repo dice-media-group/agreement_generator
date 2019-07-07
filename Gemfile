@@ -71,7 +71,7 @@ gem 'sitemap_generator', '~> 6.0', '>= 6.0.1'
 gem 'whenever', require: false
 
 ## app-specific
-
+gem "aws-sdk-s3", require: false #active_storage
 
 # fix for administrate bug https://github.com/thoughtbot/administrate/issues/1339
 
