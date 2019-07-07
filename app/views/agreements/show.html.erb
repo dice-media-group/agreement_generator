@@ -58,25 +58,30 @@
       </ul>
       
     <% else %>
-        no deliverables
+    <%= link_to edit_agreement_path(@agreement, :anchor => "deliverables") do %>
+      Add a Deliverable
+    <% end %>
 
     <% end %>
   </dd>
 
   
 </dl>
-  <dt>scheduled-payments
-    Scheduled Payments:
-    <%= link_to edit_agreement_path(@agreement, :anchor => "scheduled-payments") do %>
-      (+)
-    <% end %>
+  <dt>
   </dt>
   <dd>
     <% if @agreement.scheduled_payments.count > 0 %>
       <table class="payments-table">
         <thead>
             <tr>
-                <th colspan="2">Payment Schedule</th>
+                <th colspan="2">
+                  Payment Schedule
+                  <%= link_to edit_agreement_path(@agreement, 
+                    :anchor => "scheduled-payments") do %>
+                    (+)
+                  <% end %>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -92,7 +97,28 @@
       </table>
       
     <% else %>
-        no scheduled_payments
+      <table class="payments-table">
+        <thead>
+            <tr>
+                <th >
+                  Payment Schedule
+                  <%= link_to edit_agreement_path(@agreement, 
+                    :anchor => "scheduled-payments") do %>
+                    (+)
+                  <% end %>
+
+                </th>
+            </tr>
+            <tr><td>No Payment scheduled</td></tr>
+            
+        </thead>
+        <tbody>
+
+            <tr>
+            </tr>
+
+        </tbody>
+      </table>
 
     <% end %>
   </dd>
