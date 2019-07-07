@@ -53,12 +53,12 @@
     <% if @agreement.deliverables.count > 0 %>
       <ul class="agreements">
         <% @agreement.deliverables.each do |deliverable| %>
-          <li> <%= deliverable.body %> </li>
+          <li> <%= deliverable.description %> </li>
         <% end -%>
       </ul>
       
     <% else %>
-        deliverable
+        no deliverables
 
     <% end %>
   </dd>

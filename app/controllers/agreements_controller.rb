@@ -15,8 +15,9 @@ class AgreementsController < ApplicationController
 
   # GET /agreements/new
   def new
-    @agreement = Agreement.new
-    @documents = Document.all
+    @agreement    = Agreement.new
+    @documents    = Document.all
+    @agreement.deliverables.new
   end
 
   # GET /agreements/1/edit
@@ -79,6 +80,7 @@ class AgreementsController < ApplicationController
                 :client_rep_signature, :client_signed_on, 
                 :signature, :signed_on, 
                 :user_id, :document_id,
-                :project_id)
+                :project_id,
+                deliverables_attributes: [:id, :description, :_destroy])
     end
 end

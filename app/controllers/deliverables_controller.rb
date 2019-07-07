@@ -32,7 +32,7 @@ class DeliverablesController < ApplicationController
 
     respond_to do |format|
       if @deliverable.save
-        format.html { redirect_to @deliverable, notice: 'Deliverable was successfully created.' }
+        format.html { redirect_to @deliverable.agreement, notice: 'Deliverable was successfully created.' }
         format.json { render :show, status: :created, location: @deliverable }
       else
         format.html { render :new }
