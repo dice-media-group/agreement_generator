@@ -1,0 +1,39 @@
+<%= form_with(model: approval, local: true) do |form| %>
+  <% if approval.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(approval.errors.count, "error") %> prohibited this approval from being saved:</h2>
+
+      <ul>
+      <% approval.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :agreement_id %>
+    <%= form.text_field :agreement_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :status %>
+    <%= form.text_field :status, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if approval.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', approval, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if approval.persisted? %>
+      <%= link_to "Cancel", approval, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", approvals_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<h1><%= @document.name %> </h1>
+<!-- render agreement members partial -->
+<%= render partial: 'introduction' %>
+<!-- render agreement document partial -->
+<%= render partial: 'main_document' %>
+
+<!-- render agreement signature partial -->
+
+<!-- conditionally render deliveables partial -->
+<hr>
+<%= render partial: 'deliverables' %>
+
+<!-- conditionally render scheduled payments partial -->
+<hr>
+<%= render partial: 'payment_schedule' %>
+
+<hr>
+<%= render 'form', approval: @approval %>

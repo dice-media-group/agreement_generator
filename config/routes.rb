@@ -1,12 +1,16 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :approvals
+  get 'approvals/new'
+  get 'approvals/show'
   resources :sections
   resources :deliverables
   resources :projects
   resources :agreements do
     resources :deliverables, shallow: true
     resources :scheduled_payments, shallow: true
+    resources :approvals, shallow: true
   end
   resources :people
   resources :documents do

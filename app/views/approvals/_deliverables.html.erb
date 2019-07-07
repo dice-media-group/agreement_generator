@@ -1,0 +1,24 @@
+    <% if @agreement.deliverables.count > 0 %>
+      <h3>ADDENDUM – SCOPE OF SERVICE</h3>
+      <p>Summary:</p>
+
+      <p>
+        Pursuant to the terms of the attached Contract, <em> Dice Media Group</em> (the Vendor) and  <em><%= @agreement.client_organization %></em> (the Client) agree to the following Scope of Work:  
+      </p>
+
+      <h4>Statement of Purpose</h4> 
+      <p>
+        The purpose of the Scope of Work is the implementation of 
+        <em><%= @agreement.project.name %></em> (the Project) that is to be funded by the Client pursuant to the terms of this Scope of Work.
+
+        <h4>Deliverables for this Contract</h4>
+        The Vendor will provide the following deliverables as features of the current phase of the Project:
+        
+      </p>
+
+      <ul class="agreements">
+        <% @agreement.deliverables.each do |deliverable| %>
+          <li> <%= deliverable.description %> </li>
+        <% end -%>
+      </ul>
+    <% end %>
