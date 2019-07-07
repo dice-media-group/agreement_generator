@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_07_015529) do
+ActiveRecord::Schema.define(version: 2019_07_07_165126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(version: 2019_07_07_015529) do
     t.decimal "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "agreement_id", null: false
+    t.index ["agreement_id"], name: "index_payments_on_agreement_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -130,6 +132,15 @@ ActiveRecord::Schema.define(version: 2019_07_07_015529) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "scheduled_payments", force: :cascade do |t|
+    t.date "due_date"
+    t.decimal "amount"
+    t.bigint "agreement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["agreement_id"], name: "index_scheduled_payments_on_agreement_id"
   end
 
   create_table "scope_documents", force: :cascade do |t|
@@ -183,8 +194,10 @@ ActiveRecord::Schema.define(version: 2019_07_07_015529) do
   add_foreign_key "contact_details", "documents"
   add_foreign_key "deliverables", "agreements"
   add_foreign_key "payment_schedules", "documents"
+  add_foreign_key "payments", "agreements"
   add_foreign_key "project_users", "projects"
   add_foreign_key "project_users", "users"
+  add_foreign_key "scheduled_payments", "agreements"
   add_foreign_key "scope_documents", "documents"
   add_foreign_key "services", "users"
 end

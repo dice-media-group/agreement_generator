@@ -81,6 +81,7 @@ class AgreementsController < ApplicationController
                 :signature, :signed_on, 
                 :user_id, :document_id,
                 :project_id,
-                deliverables_attributes: [:id, :description, :_destroy])
+                deliverables_attributes: [:id, :description, :_destroy],
+                scheduled_payments_attributes: [:id, :due_date, :amount, :_destroy])
     end
 end
