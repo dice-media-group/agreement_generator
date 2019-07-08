@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Approvals</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_agreement_approval_url(@agreement), class: 'btn btn-primary' do %>
+    (+) New Approval
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Agreement</th>
+            <th>Status</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @approvals.each do |approval| %>
+        <%= content_tag :tr, id: dom_id(approval), class: dom_class(approval) do %>
+          
+
+                      <td><%= approval.agreement %></td>
+                      <td><%= approval.status %></td>
+          
+          
+            <td><%= link_to 'Show', approval %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

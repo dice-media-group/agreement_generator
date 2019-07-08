@@ -1,0 +1,52 @@
+<% if @agreement.scheduled_payments.count > 0 %>
+
+<h3>
+  ADDENDUM – PAYMENT SCHEDULE   
+</h3>
+
+<h4>
+  Summary:
+</h4>
+<p>
+Payment for services occurs every month. Pursuant to the terms of the attached Contract,  
+  <em><%= @agreement.client_organization %></em>  (the Client) agrees to pay 
+  <em>Dice Media Group</em> (the Vendor) on the following Payment Schedule:  
+</p>
+
+
+  <table class="payments-table">
+    <thead>
+        <tr>
+            <th colspan="2">
+              Payment Schedule
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @agreement.scheduled_payments.each do |scheduled_payment| %>
+
+        <tr>
+            <td><%= scheduled_payment.due_date.strftime("%d %b %Y") %></td>
+            <td><%= number_to_currency(scheduled_payment.amount) %></td>
+        </tr>
+      <% end -%>
+
+    </tbody>
+  </table>
+  
+<% else %>
+  <%# don't render anything %>
+
+<% end %>
+
+<h4>Project Expenses</h4>
+<p>
+  The Client is responsible for the expenses of hosting and other needs of the project during its development.  
+</p>
+
+
+
+<h4>Reporting Requirements</h4>
+<p>
+  The Client will meet regularly, and as needed, with the Vendor to discuss the development of features and their progress.  
+</p>
