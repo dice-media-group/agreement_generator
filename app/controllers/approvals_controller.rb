@@ -29,12 +29,12 @@ class ApprovalsController < ApplicationController
   # POST agreements/x/approvals
   # POST agreements/x//approvals.json
   def create
-    @agreement = Agreement.find(params[:agreement_id])
+    @agreement = Agreement.find(params[:approval][:agreement_id])
     @approval = @agreement.approvals.new(approval_params)
 
     respond_to do |format|
       if @approval.save
-        format.html { redirect_to @approval, notice: 'Approval was successfully created.' }
+        format.html { redirect_to @agreement, notice: 'Approval was successfully created.' }
         format.json { render :show, status: :created, location: @approval }
       else
         format.html { render :new }
