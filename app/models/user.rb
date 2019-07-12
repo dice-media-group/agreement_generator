@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: :recipient_id
   has_many :services
   has_many :project_users
-  has_many :projects, through: :project_users
-  has_many :agreements
+  has_many :projects, 					through: :project_users
+  has_many :agreements, 				inverse_of: :user
+  has_many :approvals, 					inverse_of: :user
+  has_many :agreements, 				through: :approvals
+
 end

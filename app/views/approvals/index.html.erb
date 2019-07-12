@@ -19,7 +19,7 @@
       <tr>
     
 
-            <th>Agreement</th>
+            <th>People whom have approved</th>
             <th>Status</th>
             
           <th></th>
@@ -32,7 +32,7 @@
         <%= content_tag :tr, id: dom_id(approval), class: dom_class(approval) do %>
           
 
-                      <td><%= approval.agreement %></td>
+                      <td> <%= approval.user.email %></td>
                       <td><%= approval.status %></td>
           
           

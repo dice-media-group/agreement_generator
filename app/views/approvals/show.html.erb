@@ -10,9 +10,13 @@
 
 <dl class="dl-horizontal">
   <dt>Agreement:</dt>
-  <dd><%= @approval.agreement %></dd>
+  <dd><%= @approval.agreement.document.name %></dd>
 
   <dt>Status:</dt>
   <dd><%= @approval.status %></dd>
+
+  <dt>Created:</dt>
+  <dd><%= @approval.created_at %></dd>
+
 
 </dl>
