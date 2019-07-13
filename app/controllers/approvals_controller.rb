@@ -32,6 +32,8 @@ class ApprovalsController < ApplicationController
   def create
     @approval = @agreement.approvals.new(approval_params)
     @approval.user = current_user
+    @approval.signed_on = DateTime.now
+
     respond_to do |format|
       if @approval.save
         format.html { redirect_to @agreement, notice: 'Approval was successfully created.' }
@@ -78,11 +80,11 @@ class ApprovalsController < ApplicationController
     end
 
     def load_agreement
-      @agreement =  current_user.agreements.find_by_id(params[:agreement_id])
+      @agreement =  Agreement.find_by_id(params[:agreement_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def approval_params
-      params.require(:approval).permit(:agreement_id, :status)
+      params.require(:approval).permit(:agreement_id, :status, :signature)
     end
 end

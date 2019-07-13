@@ -14,20 +14,17 @@
     </div>
   <% end %>
 <!--  -->
+<%#= render partial: 'experimental' %>
   <%= form.hidden_field :signature, class: 'signature_pad_input' %>
+
   <div class="signature_pad text-center">
     <div class="signature_pad_body">
       <canvas></canvas>
     </div>
+    <div class="signature_pad_footer">
+      <div class="text-muted">Sign above</div>
+    </div>
   </div>
-<h1>
-  ================================
-</h1>
-  <%= render partial: 'signature' %>
-
-<h1>
-  ================================
-</h1>
 
 <!--  -->
 
@@ -39,7 +36,7 @@
       </div>
     <% end %>
 
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn btn-primary signature_pad_save' %>
 
     <% if approval.persisted? %>
       <%= link_to "Cancel", approval, class: "btn btn-link" %>

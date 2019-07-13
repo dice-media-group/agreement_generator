@@ -18,5 +18,12 @@
   <dt>Created:</dt>
   <dd><%= @approval.created_at %></dd>
 
+  <dt>Signature:</dt>
+  <dd>
+    <div class='well'>
+      <p><%= image_tag @approval.signature if @approval.signature %></p>
+      <p><%= @approval.agreement.document.name %> accepted on <%= @approval.signed_on %></p>
+    </div>
+  </dd>
 
 </dl>

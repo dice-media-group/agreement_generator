@@ -1,8 +1,32 @@
+<style>
+	.card{
+		width: 24%;
+		height: 300px;
+	}
+	.scrollable{
+	  overflow-y: auto;
+	  max-height: 240px;
+	}
+	.signature_pad {
+	  max-width: 700px;
+	  height: 400px;
+	  margin: 0 auto;
+	}
+
+	.signature_pad_body canvas {
+	  width: 100%;
+	  height: 100%;
+	  border: dotted #444;
+	  background: #CCCCCC;
+	}
+</style>
+
 <h1><%= @document.name %> </h1>
 <!-- render agreement members partial -->
+<section class="document-content scrollable">
 <%= render partial: 'introduction' %>
 <!-- render agreement document partial -->
-<%= render partial: 'main_document' %>
+	<%= render partial: 'main_document' %>	
 
 <!-- render agreement signature partial -->
 
@@ -13,6 +37,42 @@
 <!-- conditionally render scheduled payments partial -->
 <hr>
 <%= render partial: 'payment_schedule' %>
+</section>
 
 <hr>
 <%= render 'form', approval: @approval %>
+
+<!-- scripts for signature_pad -->
+
+    <!--  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.0/dist/signature_pad.min.js"></script>
+	<script>
+		function resizeCanvas(canvas) {
+		    var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+		    canvas.width = canvas.offsetWidth * ratio;
+		    canvas.height = canvas.offsetHeight * ratio;
+		    canvas.getContext("2d").scale(ratio, ratio);
+		}
+
+		$(document).on('turbolinks:load', function() {
+		  var canvas = document.querySelector("canvas");
+		  if (canvas){
+		    canvas.height = canvas.offsetHeight;
+		    canvas.width = canvas.offsetWidth;
+		    window.onresize = resizeCanvas(canvas);
+		    resizeCanvas(canvas);
+		    signature_pad = new SignaturePad(canvas);
+		    $('.signature_pad_clear').click(function() { signature_pad.clear() });
+		    $('.signature_pad_save').click(function(event) { 
+		      if (signature_pad.isEmpty()){
+		        alert('You must sign to accept the Terms and Conditions');
+		        event.preventDefault();
+		      } else {
+		        $('.signature_pad_input').val(signature_pad.toDataURL());
+		      }
+		    });
+		  }
+		});
+	</script>

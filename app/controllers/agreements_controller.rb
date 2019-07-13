@@ -27,7 +27,8 @@ class AgreementsController < ApplicationController
   # POST /agreements
   # POST /agreements.json
   def create
-    @agreement = current_user.agreements.new(agreement_params)
+    @agreement = Agreement.new(agreement_params)
+    @agreement.user = current_user
     # @agreement.user_id = current_user
     # @agreement.user = current_user
 
