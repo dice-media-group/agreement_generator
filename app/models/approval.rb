@@ -1,4 +1,5 @@
 class Approval < ApplicationRecord
+  validates :signature, :presence => true
   belongs_to :agreement
   belongs_to :user
 
