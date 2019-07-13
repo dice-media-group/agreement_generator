@@ -1,4 +1,7 @@
-<%= form_with(model: approval, local: true) do |form| %>
+<!--  -->
+<%= form_with(model: approval,
+              url: (@approval.new_record? ? [@agreement, @approval]: @approval), 
+              local: true) do |form| %>
   <% if approval.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(approval.errors.count, "error") %> prohibited this approval from being saved:</h2>
@@ -10,16 +13,21 @@
       </ul>
     </div>
   <% end %>
+<!--  -->
+<%#= render partial: 'experimental' %>
+  <%= form.hidden_field :signature, class: 'signature_pad_input' %>
 
-  <div class="form-group">
-    <%= form.label :agreement_id %>
-    <%= form.text_field :agreement_id, class: 'form-control' %>
+  <div class="signature_pad text-center">
+    <div class="signature_pad_body">
+      <canvas></canvas>
+    </div>
+    <div class="signature_pad_footer">
+      <div class="text-muted">Sign above</div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :status %>
-    <%= form.text_field :status, class: 'form-control' %>
-  </div>
+<!--  -->
+
 
   <div class="form-group">
     <% if approval.persisted? %>
@@ -28,7 +36,7 @@
       </div>
     <% end %>
 
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn btn-primary signature_pad_save' %>
 
     <% if approval.persisted? %>
       <%= link_to "Cancel", approval, class: "btn btn-link" %>
