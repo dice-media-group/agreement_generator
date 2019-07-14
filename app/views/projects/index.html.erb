@@ -19,7 +19,9 @@
           <ul>
             <% project.agreements.each do |agreement| %>
               <li>
-                <%= link_to agreement do %><%= link_to agreement.document.name%><% end %>                   
+                <%= link_to agreement do %>
+                  <%= agreement.document.name%>
+                <% end %>
               </li>
 
             <% end -%>

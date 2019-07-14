@@ -1,6 +1,7 @@
 class AgreementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
+  before_action :load_project, only: [:new, :create, :index]
 
   # GET /agreements
   # GET /agreements.json
@@ -15,7 +16,7 @@ class AgreementsController < ApplicationController
 
   # GET /agreements/new
   def new
-    @agreement    = Agreement.new
+    @agreement    = @project.agreements.new
     @documents    = Document.all
     @agreement.deliverables.new
   end
@@ -27,11 +28,8 @@ class AgreementsController < ApplicationController
   # POST /agreements
   # POST /agreements.json
   def create
-    @agreement = Agreement.new(agreement_params)
+    @agreement = @project.agreements.new(agreement_params)
     @agreement.user = current_user
-    # @agreement.user_id = current_user
-    # @agreement.user = current_user
-
     respond_to do |format|
       if @agreement.save
         format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
@@ -73,10 +71,15 @@ class AgreementsController < ApplicationController
       @agreement = Agreement.find(params[:id])
     end
 
+    def load_project
+      @project =  Project.find_by_id(params[:project_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def agreement_params
       params.require(:agreement)
-        .permit(:provider_rep_name, :provider_signature, 
+        .permit(:project_id, 
+                :provider_rep_name, :provider_signature, 
                 :provider_signed_on, :client_rep_name, 
                 :client_rep_signature, :client_signed_on, 
                 :signature, :signed_on, 

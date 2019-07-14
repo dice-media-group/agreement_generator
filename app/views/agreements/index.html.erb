@@ -62,4 +62,21 @@
       <% end %>
     </tbody>
   </table>
+
+  <% @agreements.each do |agreement| %>
+    <div class="row">
+      <div class="col-md-6 col-lg-4 col-xl-3">
+            <h2><%= agreement.document.name %></h2>
+            <p>HTML is the standard markup language for describing the structure of the web pages. Our HTML tutorials will help you to understand the basics of latest HTML5 language, so that you can create your own website.</p>
+            <p>
+                <%= link_to agreement, class: "btn btn-success" do %>
+                  Details &raquo;
+                <% end %>
+
+            </p>
+        </div>
+
+    </div>    
+  <% end -%>
+
 </div>
