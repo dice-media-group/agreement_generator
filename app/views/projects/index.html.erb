@@ -1,41 +1,32 @@
-
-
-
-<div class="row">
-  <div class="col-sm-6">
-    <h1>Projects</h1>
-  </div>
-
-  <div class="col-sm-6 text-right">
-  <%= link_to new_project_path, class: 'btn btn-primary' do %>
-    Add New Project
-  <% end %>
-  </div>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-    
-        <th>Name</th>
-    
-
-            
-      </tr>
-    </thead>
-
-    <tbody>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Projects</h1>
+        <p class="lead">Got a new client?  Need contract or two?  Let's create a project to keep everything together.</p>
+        <p>
+          <%= link_to new_project_path, class: 'btn btn-success btn-lg' do %>
+            (+) New Project
+          <% end %>
+        </p>
+    </div>
+    <div class="row">
       <% @projects.each do |project| %>
-        <%= content_tag :tr, id: dom_id(project), class: dom_class(project) do %>
-          
-            <td><%= link_to project.name, project %></td>
-          
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <h2><%= project.name %>
+              <%= link_to project, class: 'btn btn-primary' do %>
+                Edit
+              <% end %>            
+          </h2>
+          <ul>
+            <% project.agreements.each do |agreement| %>
+              <li>
+                <%= link_to agreement do %>
+                  <%= agreement.document.name%>
+                <% end %>
+              </li>
 
-          
-          
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
+            <% end -%>
+          </ul>
+        </div>      
+      <% end -%>
+    </div>
 </div>
