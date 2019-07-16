@@ -13,6 +13,7 @@
     "jquery": "^3.4.1",
     "local-time": "^2.1.0",
     "lodash": "^4.17.14",
+    "lodash.template": "^4.5.0",
     "popper.js": "^1.15.0",
     "signature_pad": "^3.0.0-beta.3",
     "stimulus": "^1.1.1",
