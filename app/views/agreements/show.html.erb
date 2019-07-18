@@ -80,15 +80,14 @@
         <thead>
             <tr>
                 <th >
-                  Request for Approvals
-                  <%= link_to edit_agreement_path(@agreement, 
-                    :anchor => "scheduled-payments") do %>
+                  Approvals
+                  <%= link_to new_agreement_approval_path(@agreement) do %>
                     (+)
                   <% end %>
 
                 </th>
             </tr>
-            <tr><td>No Payment scheduled</td></tr>
+            <tr><td>No Approvals listed</td></tr>
             
         </thead>
         <tbody>
