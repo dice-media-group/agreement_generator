@@ -2,6 +2,8 @@ class AgreementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
   before_action :load_project, only: [:new, :create, :index]
+  layout        "crm_docs", only: [:index, :show]
+
 
   # GET /agreements
   # GET /agreements.json
