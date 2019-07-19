@@ -76,3 +76,7 @@ gem "aws-sdk-s3", require: false #active_storage
 # fix for administrate bug https://github.com/thoughtbot/administrate/issues/1339
 
 gem 'pundit', '~> 2.0', '>= 2.0.1'
+
+# print agreements to pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

@@ -1,4 +1,5 @@
 class Agreement < ApplicationRecord
+	require 'wicked_pdf'
   belongs_to 					:user
   belongs_to 					:document
   belongs_to 					:project

@@ -1,0 +1,2 @@
+module AgreementPreviewsHelper
+end
