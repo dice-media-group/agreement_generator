@@ -3,9 +3,6 @@ class AgreementPreviewsController < ApplicationController
   before_action :set_agreement, only: [:show]
 
   def show
-  end
-
-  def show
 
     respond_to do |format|
         format.html
