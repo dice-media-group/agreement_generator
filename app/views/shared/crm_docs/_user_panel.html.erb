@@ -1,0 +1,15 @@
+      <div class="user-panel">
+        <div class="pull-left image">
+        <%= image_tag gravatar_image_url(current_user.email, size: 160), 
+  			class: "img-circle", 
+  			alt: "User Image" %>
+        </div>
+        <div class="pull-left info">
+          <p>
+          	<%= current_user.first_name %>
+          	<%= current_user.last_name %>
+          		
+          	</p>
+<!--           <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->        
+		</div>
+      </div>

@@ -1,12 +1,19 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'agreement_previews/show'
+  resources :agreement_previews, only: [:show]
+  resources :crm_docs
+  resources :approvals
   resources :sections
   resources :deliverables
-  resources :projects
+  resources :projects do
+    resources :agreements
+  end
   resources :agreements do
     resources :deliverables, shallow: true
     resources :scheduled_payments, shallow: true
+    resources :approvals, shallow: true
   end
   resources :people
   resources :documents do

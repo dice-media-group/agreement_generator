@@ -1,0 +1,5 @@
+            <tr>
+                <td><%= scheduled_payment.due_date.strftime("%d %b %Y") %></td>
+                <td><%= number_to_currency(scheduled_payment.amount) %></td>
+                <!-- <td><span class="label label-success">Approved</span></td> -->
+            </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_07_195552) do
+ActiveRecord::Schema.define(version: 2019_07_11_043739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_07_07_195552) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "project_id"
+    t.string "client_organization"
     t.index ["document_id"], name: "index_agreements_on_document_id"
     t.index ["user_id"], name: "index_agreements_on_user_id"
   end
@@ -71,6 +72,18 @@ ActiveRecord::Schema.define(version: 2019_07_07_195552) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "approvals", force: :cascade do |t|
+    t.bigint "agreement_id", null: false
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.binary "signature"
+    t.datetime "signed_on"
+    t.index ["agreement_id"], name: "index_approvals_on_agreement_id"
+    t.index ["user_id"], name: "index_approvals_on_user_id"
   end
 
   create_table "contact_details", force: :cascade do |t|
@@ -222,6 +235,8 @@ ActiveRecord::Schema.define(version: 2019_07_07_195552) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "agreements", "documents"
   add_foreign_key "agreements", "users"
+  add_foreign_key "approvals", "agreements"
+  add_foreign_key "approvals", "users"
   add_foreign_key "contact_details", "documents"
   add_foreign_key "deliverables", "agreements"
   add_foreign_key "payment_schedules", "documents"

@@ -1,0 +1,47 @@
+<!--  -->
+<%= form_with(model: approval,
+              url: (@approval.new_record? ? [@agreement, @approval]: @approval), 
+              local: true) do |form| %>
+  <% if approval.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(approval.errors.count, "error") %> prohibited this approval from being saved:</h2>
+
+      <ul>
+      <% approval.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!--  -->
+<%#= render partial: 'experimental' %>
+  <%= form.hidden_field :signature, class: 'signature_pad_input' %>
+
+  <div class="signature_pad text-center">
+    <div class="signature_pad_body">
+      <canvas></canvas>
+    </div>
+    <div class="signature_pad_footer">
+      <div class="text-muted">Sign above</div>
+    </div>
+  </div>
+
+<!--  -->
+
+
+  <div class="form-group">
+    <% if approval.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', approval, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary signature_pad_save' %>
+
+    <% if approval.persisted? %>
+      <%= link_to "Cancel", approval, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", approvals_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

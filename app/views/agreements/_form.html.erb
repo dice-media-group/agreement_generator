@@ -1,4 +1,6 @@
-<%= form_with(model: agreement, local: true) do |form| %>
+<%= form_with(model: agreement,
+              url: (@agreement.new_record? ? [@project, @agreement]: @agreement), 
+              local: true) do |form| %>
   <% if agreement.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(agreement.errors.count, "error") %> prohibited this agreement from being saved:</h2>
@@ -16,26 +18,16 @@
     <%= form.text_field :provider_rep_name, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :provider_signature %>
-    <%= form.text_area :provider_signature, class: 'form-control' %>
-  </div>
-
 
   <div class="form-group">
     <%= form.label :client_rep_name %>
     <%= form.text_field :client_rep_name, class: 'form-control' %>
   </div>
-
   <div class="form-group">
-    <%= form.label :client_rep_signature %>
-    <%= form.text_area :client_rep_signature, class: 'form-control' %>
+    <%= form.label :client_organization %>
+    <%= form.text_field :client_organization, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :signature %>
-    <%= form.text_field :signature, class: 'form-control' %>
-  </div>
 
   <div class="form-group">
     <%= form.label "Document Type  " %>
@@ -44,14 +36,6 @@
         :id, 
         :name, 
         :prompt => 'Select Document') %>
-  </div>
-  <div class="form-group">
-    <%= form.label "Project  " %>
-    <%= form.collection_select(:project_id, 
-        Project.all, 
-        :id, 
-        :name, 
-        :prompt => 'Select Project') %>
   </div>
 
 <!--  -->

@@ -5,33 +5,16 @@
   <%= link_to edit_agreement_path(@agreement), class: 'btn btn-primary' do %>
     Edit
   <% end %>
-  <h1>Show agreement</h1>
+  <h1><%= @agreement.document.name || "Show agreement" %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt>Provider rep name:</dt>
   <dd><%= @agreement.provider_rep_name %></dd>
 
-  <dt>Provider signature:</dt>
-  <dd><%= @agreement.provider_signature %></dd>
-
-  <dt>Provider signed on:</dt>
-  <dd><%= @agreement.provider_signed_on %></dd>
-
   <dt>Client rep name:</dt>
   <dd><%= @agreement.client_rep_name %></dd>
 
-  <dt>Client rep signature:</dt>
-  <dd><%= @agreement.client_rep_signature %></dd>
-
-  <dt>Client signed on:</dt>
-  <dd><%= @agreement.client_signed_on %></dd>
-
-  <dt>Signature:</dt>
-  <dd><%= @agreement.signature %></dd>
-
-  <dt>Signed on:</dt>
-  <dd><%= @agreement.signed_on %></dd>
 
   <dt>Author:</dt>
   <dd><%= @agreement.user.first_name %> 
@@ -43,59 +26,26 @@
   <dt>Project:</dt>
   <dd><%= @agreement.project.name %></dd>
 
-  <dt>
-    Deliverables:         
-    <%= link_to edit_agreement_path(@agreement, :anchor => "deliverables") do %>
-      (+)
-    <% end %>
-</dt>
-  <dd>
-    <% if @agreement.deliverables.count > 0 %>
-      <ul class="agreements">
-        <% @agreement.deliverables.each do |deliverable| %>
-          <li> <%= deliverable.description %> </li>
-        <% end -%>
-      </ul>
-      
-    <% else %>
-    <%= link_to edit_agreement_path(@agreement, :anchor => "deliverables") do %>
-      Add a Deliverable
-    <% end %>
-
-    <% end %>
-  </dd>
 
   
 </dl>
+<dl>
   <dt>
   </dt>
   <dd>
-    <% if @agreement.scheduled_payments.count > 0 %>
-      <table class="payments-table">
-        <thead>
-            <tr>
-                <th colspan="2">
-                  Payment Schedule
-                  <%= link_to edit_agreement_path(@agreement, 
-                    :anchor => "scheduled-payments") do %>
-                    (+)
-                  <% end %>
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-          <% @agreement.scheduled_payments.each do |scheduled_payment| %>
-
-            <tr>
-                <td><%= scheduled_payment.due_date.strftime("%d %b %Y") %></td>
-                <td><%= number_to_currency(scheduled_payment.amount) %></td>
-            </tr>
-          <% end -%>
-
-        </tbody>
-      </table>
+    <% if @agreement.deliverables.count > 0 %>
+      <%= render "deliverables_table"  %> 
       
+    <% else %>
+      <%= link_to edit_agreement_path(@agreement, :anchor => "deliverables") do %>
+        Add a Deliverable
+      <% end %>
+
+    <% end %>
+
+    <% if @agreement.scheduled_payments.count > 0 %>
+      <%= render "payment_schedule_table"  %> 
+     
     <% else %>
       <table class="payments-table">
         <thead>
@@ -121,7 +71,36 @@
       </table>
 
     <% end %>
-  </dd>
+
+    <% if @agreement.approvals.count > 0 %>
+      <%= render "approvals_table"  %> 
+     
+    <% else %>
+      <table class="payments-table">
+        <thead>
+            <tr>
+                <th >
+                  Approvals
+                  <%= link_to new_agreement_approval_path(@agreement) do %>
+                    (+)
+                  <% end %>
+
+                </th>
+            </tr>
+            <tr><td>No Approvals listed</td></tr>
+            
+        </thead>
+        <tbody>
+
+            <tr>
+            </tr>
+
+        </tbody>
+      </table>
+
+    <% end %>  </dd>
 
   
 </dl>
+
+

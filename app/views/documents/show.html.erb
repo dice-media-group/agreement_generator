@@ -5,13 +5,10 @@
   <%= link_to edit_document_path(@document), class: 'btn btn-primary' do %>
     Edit
   <% end %>
-  <h1>Show document</h1>
+  <h1><%= @document.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @document.name %></dd>
-
   <dt>Main body:</dt>
   <dd><%= @document.main_body %></dd>
 

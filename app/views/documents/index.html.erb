@@ -1,3 +1,9 @@
+<style>
+  .scrollable{
+    overflow-y: auto;
+    max-height: 240px;
+  }
+</style>
 
 
 
@@ -33,7 +39,11 @@
             <td><%= link_to document.name, document %></td>
           
 
-                      <td><%= document.main_body %></td>
+                      <td>
+                        <section class="scrollable">
+                          <%= document.main_body %>
+                        </section>
+                      </td>
           
           
         <% end %>

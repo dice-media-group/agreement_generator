@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render partial: '/shared/crm_docs/head' %>
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+      <%= render "shared/crm_docs/main_header" %>
+      <!-- =============================================== -->
+      <!-- Left side column. contains the sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <%= render partial: 'shared/crm_docs/user_panel' %>
+          <!-- search form -->
+          <%= render "shared/crm_docs/sidebar_search_form" %>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <%= render partial: 'shared/crm_docs/sidebar_menu' %>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+      <!-- =============================================== -->
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render "shared/crm_docs/content_header" %>
+        <!-- Main content -->
+        <%= render "shared/crm_docs/main_content" %>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+      <%= render "shared/crm_docs/main_footer" %>
+      <%= render partial: '/shared/crm_docs/aside_one' %>
+      <!-- /.control-sidebar -->
+      <!-- Add the sidebar's background. This div must be placed
+      immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+    <%= render partial: '/shared/crm_docs/javascript' %>
+  </body>
+</html>
