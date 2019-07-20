@@ -1,2 +1,12 @@
-<h1>Welcome to Jumpstart!</h1>
-<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+<style>
+	.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+	.btn-labeled {padding-top: 0;padding-bottom: 0;}
+	.btn { margin-bottom:10px; }
+</style>
+
+<h1>Welcome to Document Generator!</h1>
+
+
+  <%= link_to projects_path, class: 'btn btn-labeled btn-primary' do %>
+    <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i></span>Go to Projects Home
+  <% end %>
