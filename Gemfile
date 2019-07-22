@@ -82,3 +82,4 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 # invite someone to a project
 gem 'devise_invitable', '~> 2.0', '>= 2.0.1'
+gem 'sendgrid-ruby'
