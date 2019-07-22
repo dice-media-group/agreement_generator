@@ -6,13 +6,25 @@
     Edit
   <% end %>
   <h1><%= @project.name %></h1>
-  	<p>
+<!--   	<p>
 		<%= link_to new_user_invitation_path, class: 'btn btn-success btn-lg' do %>
 			(+) New invitation
 		<% end %>
 	</p>
-
-  new_user_invitation_path
+ -->
+ <h3>Project Members</h3>
+ <% @project.users.each do |user| %>
+ 	<%= user.email %>
+ 	
+ <% end -%>
+ 
+ 	<h3>Invite someone</h3>
+	<%= form_for [@project, ProjectUser.new]  do |f| %>
+		<div class="email">
+			<%= f.text_field :email, required: true %>			
+		</div>
+		<%= f.submit "invite to project"%>
+	<% end -%>
 
 </div>
 
