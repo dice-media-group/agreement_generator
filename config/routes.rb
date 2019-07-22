@@ -7,21 +7,27 @@ Rails.application.routes.draw do
   resources :approvals
   resources :sections
   resources :deliverables
+
   resources :projects do
+    resources :project_users, path: :users, module: :projects
     resources :agreements
   end
+
   resources :agreements do
     resources :deliverables, shallow: true
     resources :scheduled_payments, shallow: true
     resources :approvals, shallow: true
   end
+
   resources :people
+
   resources :documents do
       resources :contact_details, shallow: true
       resources :scope_documents
       resources :payments
       resources :payment_schedules
   end
+
   namespace :admin do
       resources :users
 
