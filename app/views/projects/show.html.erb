@@ -6,6 +6,14 @@
     Edit
   <% end %>
   <h1><%= @project.name %></h1>
+  	<p>
+		<%= link_to new_user_invitation_path, class: 'btn btn-success btn-lg' do %>
+			(+) New invitation
+		<% end %>
+	</p>
+
+  new_user_invitation_path
+
 </div>
 
 <dl class="dl-horizontal">

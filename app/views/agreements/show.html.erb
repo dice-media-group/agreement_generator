@@ -5,6 +5,13 @@
   <%= link_to edit_agreement_path(@agreement), class: 'btn btn-primary' do %>
     Edit
   <% end %>
+  <%= link_to agreement_preview_path(@agreement, :format => 'pdf'), class: 'btn btn-primary' do %>
+    <i class="fa  fa-file-pdf-o"></i> PDF Copy
+  <% end %>
+  <%= link_to edit_agreement_path(@agreement), class: 'btn btn-primary' do %>
+    <i class="fa fa-share-alt"></i> Share for Approval
+  <% end %>
+
   <h1><%= @agreement.document.name || "Show agreement" %></h1>
 </div>
 
@@ -76,7 +83,7 @@
       <%= render "approvals_table"  %> 
      
     <% else %>
-      <table class="payments-table">
+      <table class="approvals-table">
         <thead>
             <tr>
                 <th >
