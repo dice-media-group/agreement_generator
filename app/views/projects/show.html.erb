@@ -1,16 +1,3 @@
-<h3>Project Membership</h3>
-<div class="pm-details">
-	<%#= "Project Membership user name: #{@project_membership.user.first_name}" %>
-	<%= "Project Membership role: #{@project_membership.role}" %>
-	<ProjectUser id: 5, project_id: 9, user_id: 5, created_at: "2019-07-22 18:23:01", updated_at: "2019-07-22 18:23:01", role: nil, email: nil>
-</div>
-
-<% if @project_membership.role == "owner" %>
-	<%= render partial: 'owner_content_page' %>
-<% else %>
-		<%= render partial: 'default_content_page' %>
-
-<% end -%>
 	
 
 <div class="page-header">
@@ -21,48 +8,13 @@
     Edit
   <% end %>
   <h1><%= @project.name %></h1>
-<!--   	<p>
-		<%= link_to new_user_invitation_path, class: 'btn btn-success btn-lg' do %>
-			(+) New invitation
-		<% end %>
-	</p>
- -->
- <h3>Project Members</h3>
- <% @project.users.each do |user| %>
- 	<%= user.email %>
- 	
- <% end -%>
- 
- 	<h3>Invite someone</h3>
-	<%= form_for [@project, ProjectUser.new]  do |f| %>
-		<div class="email">
-			<%= f.text_field :email, required: true %>			
-		</div>
-		<%= f.submit "invite to project"%>
+
+	 <% if @project_membership.role == "owner" %>
+		<%= render partial: 'owner_content_page' %>
+	<% else %>
+			<%= render partial: 'default_content_page' %>
+
 	<% end -%>
 
+
 </div>
-
-<dl class="dl-horizontal">
-  <dt >Agreements:</dt>
-  <dd>
-	<ul>
-		<% @project.agreements.each do |agreement| %>
-			<li>
-				<%= link_to agreement do %>
-                  <%= agreement.document.name%>
-                <% end %>
-
-			</li>
-
-		<% end -%>
-	</ul>
-	<p>
-		<%= link_to new_project_agreement_path(@project), class: 'btn btn-success btn-lg' do %>
-			(+) New Agreement
-		<% end %>
-	</p>
-
-
-  </dd>
-</dl>
