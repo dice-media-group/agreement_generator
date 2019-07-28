@@ -7,13 +7,20 @@
         <h4 class="modal-title">Ask for approval for <%= agreement.document.name %></h4>
       </div>
       <div class="modal-body">
-
-            <%= form_for [@project, ProjectUser.new]  do |f| %>
+<%= form_with scope: :authorization_request, url: agreement_authorization_requests_path(agreement)  do |f| %>
       <div class="input-group">
               <span class="input-group-addon">
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-user"></i>
               </span>
-              <%= f.text_field :email, 
+                <%= f.collection_select :recipient_id, 
+                  @project.users, 
+                  :id, 
+                  :first_name, 
+                  class: "form-control",
+                  required: true, 
+                  prompt: true %>
+
+              <%#= f.text_field :recipient.email, 
                 required: true, 
                 class: "form-control"
               %>
@@ -21,15 +28,16 @@
           </div>
 
   <!--  -->
-      <%#= f.submit "invite to project", class: "btn btn-info"%>
-    <% end -%>
+      <%#= f.submit "Send Request", class: "btn btn-primary"%>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send Request</button>
+        <%= f.submit "Send Request", class: "btn btn-primary"%><!-- <button type="button" class="btn btn-primary">Send Request</button> -->
       </div>
     </div>
+        <% end -%>
+
     <!-- /.modal-content -->
   </div>
   <!-- /.modal-dialog -->

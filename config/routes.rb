@@ -3,6 +3,8 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   get 'agreement_previews/show'
   resources :agreement_previews, only: [:show]
+  # resources :agreement_authorization_requests, only: [:new, :create]
+
   resources :crm_docs
   resources :approvals
   resources :sections
@@ -17,6 +19,9 @@ Rails.application.routes.draw do
     resources :deliverables, shallow: true
     resources :scheduled_payments, shallow: true
     resources :approvals, shallow: true
+    resources :authorization_requests, path: :authorization_requests, module: :agreements
+
+
   end
 
   resources :people
@@ -26,6 +31,10 @@ Rails.application.routes.draw do
       resources :scope_documents
       resources :payments
       resources :payment_schedules
+  end
+
+  resources :conversations do
+    resources :messages
   end
 
   namespace :admin do
