@@ -9,7 +9,7 @@ class Agreements::AuthorizationRequestsController < ApplicationController
 	def create
 		@project = @agreement.project
 
-    	if User.find(params[:recipient_id]).present?
+    	if User.find(params[:recipient_id])
     		@recipient = User.find(params[:recipient_id])
 			authorization_request = @agreement.authorization_requests.new(authorization_request_params)
 			mail_authorization_request(@recipient, @agreement)
