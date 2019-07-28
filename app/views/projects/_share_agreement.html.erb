@@ -12,19 +12,13 @@
               <span class="input-group-addon">
                 <i class="fa fa-user"></i>
               </span>
-                <%#= f.collection_select :recipient_id, 
+                <%= f.collection_select :recipient_id, 
                   @project.users, 
                   :id, 
                   :first_name, 
                   class: "form-control",
                   required: true, 
                   prompt: true %>
-
-              <%#= f.text_field :recipient.email, 
-                required: true, 
-                class: "form-control"
-              %>
-
           </div>
 
   <!--  -->
