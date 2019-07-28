@@ -4,6 +4,7 @@ class Agreement < ApplicationRecord
   belongs_to 					:document
   belongs_to 					:project
 
+  has_many            :approval_requests
   has_many 						:deliverables, 			inverse_of: :agreement
   has_many 						:scheduled_payments, 	inverse_of: :agreement
   has_many 						:approvals, 			inverse_of: :agreement

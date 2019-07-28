@@ -1,0 +1,71 @@
+<div class="project-content">
+	<div class="col-md-6">
+	 <h3>Project Members</h3>
+		<%= form_for [@project, ProjectUser.new]  do |f| %>
+		 	<div class="input-group">
+	            <span class="input-group-addon">
+	            	<i class="fa fa-envelope"></i>
+	            </span>
+	            <%= f.text_field :email, 
+	            	required: true, 
+	            	class: "form-control"
+	            %>
+	            <span class="input-group-btn">
+	              <%= f.submit "invite to project", class: "btn btn-info"%>
+	            </span>
+
+
+	        </div>
+
+	<!--  -->
+			<%#= f.submit "invite to project", class: "btn btn-info"%>
+		<% end -%>
+
+	 <% @project.users.each do |user| %>
+	 	<%= user.email %>
+	 	
+	 <% end -%>
+	 
+
+	</div>
+	<div class="col-md-6">
+		<h3>Agreements
+			<%= link_to new_project_agreement_path(@project), class: 'btn btn-success btn-lg' do %>
+				(+) New Agreement
+			<% end %>
+
+		</h3>
+			<ul>
+		<% @project.agreements.each do |agreement| %>
+			<li>
+				<!-- model button -->
+				<!-- start modal -->
+				<div class="box-body">
+					<button type="button" 
+						class="btn btn-default" 
+						data-toggle="modal" 
+						data-target="#modal-share-agreement-<%= agreement.id %>">
+						Request Approval
+					</button>
+        		 </div>
+
+				<%= render partial: 'share_agreement', locals: {agreement: agreement} %>
+				<!-- finish modal -->
+				<%= link_to agreement do %>
+                  <%= agreement.document.name%>
+                <% end %>
+
+			</li>
+
+		<% end -%>
+	</ul>
+	<p>
+	</p>
+
+</dl>
+
+	</div>
+
+</div>
+
+

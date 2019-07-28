@@ -1,0 +1,15 @@
+<p>
+Hi <%= @user.first_name %>,	
+</p>
+<p>
+We need your "John Hancock" on something so that we can continue with your project.  Please click on the link below, review the document, and sign.  If you have any questions, feel free to contact us.	
+</p>
+
+<p>
+Document link: <%= link_to new_agreement_approval_url(@agreement) do %>Click here<% end %>	
+</p>
+<p>
+Carl Tanner<br>
+Lead Developer <br>
+Dice Media Group	
+</p>

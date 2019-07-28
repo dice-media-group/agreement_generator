@@ -1,3 +1,5 @@
+	
+
 <div class="page-header">
   <%= link_to projects_path, class: 'btn btn-default' do %>
     All Projects
@@ -6,48 +8,13 @@
     Edit
   <% end %>
   <h1><%= @project.name %></h1>
-<!--   	<p>
-		<%= link_to new_user_invitation_path, class: 'btn btn-success btn-lg' do %>
-			(+) New invitation
-		<% end %>
-	</p>
- -->
- <h3>Project Members</h3>
- <% @project.users.each do |user| %>
- 	<%= user.email %>
- 	
- <% end -%>
- 
- 	<h3>Invite someone</h3>
-	<%= form_for [@project, ProjectUser.new]  do |f| %>
-		<div class="email">
-			<%= f.text_field :email, required: true %>			
-		</div>
-		<%= f.submit "invite to project"%>
+
+	 <% if @project_membership.role == "owner" %>
+		<%= render partial: 'owner_content_page' %>
+	<% else %>
+			<%= render partial: 'default_content_page' %>
+
 	<% end -%>
 
+
 </div>
-
-<dl class="dl-horizontal">
-  <dt >Agreements:</dt>
-  <dd>
-	<ul>
-		<% @project.agreements.each do |agreement| %>
-			<li>
-				<%= link_to agreement do %>
-                  <%= agreement.document.name%>
-                <% end %>
-
-			</li>
-
-		<% end -%>
-	</ul>
-	<p>
-		<%= link_to new_project_agreement_path(@project), class: 'btn btn-success btn-lg' do %>
-			(+) New Agreement
-		<% end %>
-	</p>
-
-
-  </dd>
-</dl>

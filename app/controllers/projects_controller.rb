@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project_membership = ProjectUser.where(project: @project, user: current_user).first
   end
 
   # GET /projects/new
