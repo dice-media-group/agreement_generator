@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :deliverables, shallow: true
     resources :scheduled_payments, shallow: true
     resources :approvals, shallow: true
-    resources :authorization_requests, path: :authorization_requests, module: :agreements
+    resources :approval_requests, path: :approval_requests, module: :agreements
 
 
   end

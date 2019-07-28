@@ -1,14 +1,15 @@
-<div class="modal fade" id="modal-share-agreement-<%= agreement.id %>" style="display: none;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">Ask for approval for <%= agreement.document.name %></h4>
-      </div>
-      <div class="modal-body">
-<%= form_with scope: :approval_request,
-    url: agreement_approval_requests_path(agreement)  do |f| %>
+<h4 class="modal-title">Ask for approval for <%= @agreement.document.name %></h4>
+<h4 class="modal-title">project name: <%= @project.name %></h4>
+
+
+<ul>
+	<% @project.users.each do |user| %>
+		<p>user first name: <%= user.first_name %></p>
+		<p>user last name: <%= user.last_name %></p>
+		<p>user email: <%= user.email %></p>
+	<% end -%>
+</ul>
+<%= form_with scope: :approval_request, url: agreement_approval_requests_path(@agreement)  do |f| %>
       <div class="input-group">
               <span class="input-group-addon">
                 <i class="fa fa-user"></i>
@@ -32,8 +33,3 @@
       </div>
     </div>
         <% end -%>
-
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
