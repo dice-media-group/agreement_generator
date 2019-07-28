@@ -17,6 +17,7 @@ class Agreements::ApprovalRequestsController < ApplicationController
 			@approval_request = @agreement.approval_requests.new(approval_request_params)
 			mail_approval_request_params(@recipient, @agreement)
 			if @approval_request.save
+				UserMailer.request_agreement_approval_email(email_recipient, agreement)
 				redirect_to :root, notice: 	"Success"
 			else
 				redirect_to :root, alert: 	"Failure"
