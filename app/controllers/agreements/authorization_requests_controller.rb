@@ -14,12 +14,12 @@ class Agreements::AuthorizationRequestsController < ApplicationController
 			authorization_request = @agreement.authorization_requests.new(authorization_request_params)
 			mail_authorization_request(@recipient, @agreement)
 			if authorization_request.save
-				redirect_to @project, notice: 	"Success"
+				redirect_to :root, notice: 	"Success"
 			else
-				redirect_to @project, alert: 	"Failure"
+				redirect_to :root, alert: 	"Failure"
 			end		
     	else
-			redirect_to @project, alert: 	"Failure"
+			redirect_to :root, alert: 	"Failure"
     	end
 
 
