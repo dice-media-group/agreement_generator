@@ -9,7 +9,8 @@ class Agreements::AuthorizationRequestsController < ApplicationController
 	def create
 		authorization_request = @agreement.authorization_requests.new(authorization_request_params)
 		@project = @agreement.project
-		mail_authorization_request(params[:recipient_id], @agreement)
+		@recipient = User.find(params[:recipient_id])
+		mail_authorization_request(@recipient, @agreement)
 
 		if authorization_request.save
 			redirect_to @project, notice: 	"Success"
