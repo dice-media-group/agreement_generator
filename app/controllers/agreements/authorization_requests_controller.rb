@@ -6,36 +6,36 @@ class Agreements::AuthorizationRequestsController < ApplicationController
 		
 	end
 
-	# def create
-	# 	@project = @agreement.project
+	def create
+		@project = @agreement.project
 
- #    	if User.find(params[:recipient_id]).present?
- #    		@recipient = User.find(params[:recipient_id])
-	# 		authorization_request = @agreement.authorization_requests.new(authorization_request_params)
-	# 		mail_authorization_request(@recipient, @agreement)
-	# 		if authorization_request.save
-	# 			redirect_to @project, notice: 	"Success"
-	# 		else
-	# 			redirect_to @project, alert: 	"Failure"
-	# 		end		
- #    	else
-	# 		redirect_to @project, alert: 	"Failure"
- #    	end
+    	if User.find(params[:recipient_id]).present?
+    		@recipient = User.find(params[:recipient_id])
+			authorization_request = @agreement.authorization_requests.new(authorization_request_params)
+			mail_authorization_request(@recipient, @agreement)
+			if authorization_request.save
+				redirect_to @project, notice: 	"Success"
+			else
+				redirect_to @project, alert: 	"Failure"
+			end		
+    	else
+			redirect_to @project, alert: 	"Failure"
+    	end
 
 
-	# end
+	end
 
-	# private
+	private
 
 		def set_agreement
 			@agreement = Agreement.find(params[:agreement_id])
 		end
 
-	# 	def authorization_request_params
-	# 		params.require(:authorization_request).permit(:recipient_id)
-	# 	end
+		def authorization_request_params
+			params.require(:authorization_request).permit(:recipient_id)
+		end
 
-	# 	def mail_authorization_request(email_recipient, agreement)
-	# 		UserMailer.request_agreement_auth_email(email_recipient, agreement)
-	# 	end
+		def mail_authorization_request(email_recipient, agreement)
+			UserMailer.request_agreement_auth_email(email_recipient, agreement)
+		end
 end
