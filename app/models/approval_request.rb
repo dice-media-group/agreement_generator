@@ -11,8 +11,7 @@ class ApprovalRequest < ApplicationRecord
   	Rails.logger.info "LOG: Attempting to email request for approval agreement: #{@agreement.document.name}, recipient: #{@recipient.email}"
 
 	# message 	= UserMailer.request_agreement_approval_email(recipient, agreement)
-	user = User.first
-	UserMailer.welcome_email(@recipient).deliver_now
+	UserMailer.request_agreement_approval_email(@recipient, @agreement).deliver_now
 	# UserMailer.with(user: User.first).welcome_email.deliver_now
 
 
