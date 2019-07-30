@@ -6,11 +6,15 @@ class ApprovalRequest < ApplicationRecord
 
   def email_request
   	Rails.logger.info "Attempting rails ApprovalRequest.email_request"
-  	recipient = User.find(self.recipient_id)
-  	agreement = Agreement.find(self.agreement_id)
-  	Rails.logger.info "agreement: #{agreement}, recipient: #{recipient}"
+  	@recipient = User.find(self.recipient_id)
+  	@agreement = Agreement.find(self.agreement_id)
+  	Rails.logger.info "LOG: Attempting to email request for approval agreement: #{@agreement.document.name}, recipient: #{@recipient.email}"
 
-	message 	= UserMailer.request_agreement_approval_email(recipient, agreement)
+	# message 	= UserMailer.request_agreement_approval_email(recipient, agreement)
+	UserMailer.request_agreement_approval_email(@recipient, @agreement).deliver_now
+	# UserMailer.with(user: User.first).welcome_email.deliver_now
+
+
   end
 
 end
