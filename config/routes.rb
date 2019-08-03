@@ -29,8 +29,9 @@ Rails.application.routes.draw do
   resources :documents do
       resources :contact_details, shallow: true
       resources :scope_documents
-      resources :payments
-      resources :payment_schedules
+      ## TODO these routes may be deprecated with payment stuff to be connected to agreeements
+      # resources :payments
+      # resources :payment_schedules
   end
 
   resources :conversations do
