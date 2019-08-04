@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_030734) do
+ActiveRecord::Schema.define(version: 2019_08_04_043003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,7 +133,9 @@ ActiveRecord::Schema.define(version: 2019_07_28_030734) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "agreement_id", null: false
     t.string "description"
+    t.bigint "project_scope_id", null: false
     t.index ["agreement_id"], name: "index_deliverables_on_agreement_id"
+    t.index ["project_scope_id"], name: "index_deliverables_on_project_scope_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -176,10 +178,9 @@ ActiveRecord::Schema.define(version: 2019_07_28_030734) do
   end
 
   create_table "payment_schedules", force: :cascade do |t|
-    t.bigint "document_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["document_id"], name: "index_payment_schedules_on_document_id"
+    t.string "version"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -194,6 +195,12 @@ ActiveRecord::Schema.define(version: 2019_07_28_030734) do
   create_table "people", force: :cascade do |t|
     t.string "name"
     t.string "organization"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "project_scopes", force: :cascade do |t|
+    t.string "version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -220,7 +227,9 @@ ActiveRecord::Schema.define(version: 2019_07_28_030734) do
     t.bigint "agreement_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "payment_schedule_id"
     t.index ["agreement_id"], name: "index_scheduled_payments_on_agreement_id"
+    t.index ["payment_schedule_id"], name: "index_scheduled_payments_on_payment_schedule_id"
   end
 
   create_table "scope_documents", force: :cascade do |t|
@@ -289,11 +298,12 @@ ActiveRecord::Schema.define(version: 2019_07_28_030734) do
   add_foreign_key "approvals", "users"
   add_foreign_key "contact_details", "documents"
   add_foreign_key "deliverables", "agreements"
-  add_foreign_key "payment_schedules", "documents"
+  add_foreign_key "deliverables", "project_scopes"
   add_foreign_key "payments", "agreements"
   add_foreign_key "project_users", "projects"
   add_foreign_key "project_users", "users"
   add_foreign_key "scheduled_payments", "agreements"
+  add_foreign_key "scheduled_payments", "payment_schedules"
   add_foreign_key "scope_documents", "documents"
   add_foreign_key "services", "users"
 end

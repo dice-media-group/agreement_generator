@@ -2,6 +2,7 @@ class AgreementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
   before_action :load_project, only: [:new, :create, :index]
+
   layout        "crm_docs", only: [:index, :show]
 
 
@@ -32,6 +33,10 @@ class AgreementsController < ApplicationController
   def create
     @agreement = @project.agreements.new(agreement_params)
     @agreement.user = current_user
+
+    attach_payment_schedule
+    attach_project_scope
+
     respond_to do |format|
       if @agreement.save
         format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
@@ -46,6 +51,9 @@ class AgreementsController < ApplicationController
   # PATCH/PUT /agreements/1
   # PATCH/PUT /agreements/1.json
   def update
+    attach_payment_schedule
+    attach_project_scope
+
     respond_to do |format|
       if @agreement.update(agreement_params)
         format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
@@ -77,13 +85,33 @@ class AgreementsController < ApplicationController
       @project =  Project.find_by_id(params[:project_id])
     end
 
+    def attach_payment_schedule
+      version_timestamp = Time.now.to_s.delete(" ")
+      @payment_schedule = PaymentSchedule.create!(version: version_timestamp)
+      @agreement.scheduled_payments.each do |scheduled_payment|
+        scheduled_payment.payment_schedule = @payment_schedule
+      end
+    end
+
+    def attach_project_scope
+      version_timestamp = Time.now.to_s.delete(" ")
+      @project_scope = ProjectScope.create!(version: version_timestamp)
+      @agreement.deliverables.each do |deliverable|
+        deliverable.project_scope_id = @project_scope.id
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def agreement_params
       params.require(:agreement)
         .permit(:project_id, 
-                :provider_rep_name, :provider_signature, 
-                :provider_signed_on, :client_rep_name, 
-                :client_rep_signature, :client_signed_on, 
+                :provider_rep_name, 
+                :provider_signature, 
+                :provider_signed_on, 
+                :client_rep_name, 
+                :client_organization,
+                :client_rep_signature, 
+                :client_signed_on, 
                 :signature, :signed_on, 
                 :user_id, :document_id,
                 :project_id,
