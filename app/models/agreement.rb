@@ -6,6 +6,7 @@ class Agreement < ApplicationRecord
 
   has_many            :approval_requests
   has_many 						:deliverables, 			   inverse_of: :agreement
+  has_many            :project_scopes,       through: :deliverables
   has_many 						:scheduled_payments, 	 inverse_of: :agreement
   has_many            :payment_schedules,    through: :scheduled_payments
 

@@ -35,6 +35,8 @@ class AgreementsController < ApplicationController
     @agreement.user = current_user
 
     attach_payment_schedule
+    attach_project_scope
+
     respond_to do |format|
       if @agreement.save
         format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
@@ -49,6 +51,9 @@ class AgreementsController < ApplicationController
   # PATCH/PUT /agreements/1
   # PATCH/PUT /agreements/1.json
   def update
+    attach_payment_schedule
+    attach_project_scope
+
     respond_to do |format|
       if @agreement.update(agreement_params)
         format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
@@ -85,6 +90,14 @@ class AgreementsController < ApplicationController
       @payment_schedule = PaymentSchedule.create!(version: version_timestamp)
       @agreement.scheduled_payments.each do |scheduled_payment|
         scheduled_payment.payment_schedule = @payment_schedule
+      end
+    end
+
+    def attach_project_scope
+      version_timestamp = Time.now.to_s.delete(" ")
+      @project_scope = ProjectScope.create!(version: version_timestamp)
+      @agreement.deliverables.each do |deliverable|
+        deliverable.project_scope_id = @project_scope.id
       end
     end
 

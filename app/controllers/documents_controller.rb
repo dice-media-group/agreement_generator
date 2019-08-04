@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :redirect_unauthorized
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   layout        "crm_docs", only: [:index, :show]
 
@@ -72,5 +73,11 @@ class DocumentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:name, :main_body)
+    end
+
+    def redirect_unauthorized
+      unless current_user.admin?
+        redirect_to root_path, alert: 'Bad URL.'
+      end
     end
 end
