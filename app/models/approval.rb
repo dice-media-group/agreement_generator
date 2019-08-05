@@ -1,7 +1,13 @@
 class Approval < ApplicationRecord
   validates :signature, :presence => true
-  belongs_to :agreement
+  belongs_to :approvable, polymorphic: true
+  # belongs_to :agreement
   belongs_to :user
+
+  ## below states that Approval should be part of has_many :through,
+  ## joining agreement with User.  Approval can belong to more than Agreement.
+  ## has_many :through will not logically work with :through.
+  ##
 
   ## should be has_many :through
   ## Like doctor has many patients through appointments

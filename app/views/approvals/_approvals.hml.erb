@@ -1,0 +1,53 @@
+<div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">
+              	Approvals Requested
+              	<%= link_to new_agreement_approval_path(@agreement) do %>
+                    (+)
+                  <% end %>
+              </h3>
+
+			  <!-- to possibly developed later -->
+              <div class="box-tools">
+                <!-- <div class="input-group input-group-sm hidden-xs" style="width: 150px;"> -->
+                  <!-- <input type="text" name="table_search" class="form-control pull-right" placeholder="Search"> -->
+
+<!--                   <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div> -->
+                <!-- </div> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Person</th>
+                  <th>Status</th>
+                  <th>Signed on</th>
+                  <th>Signature</th>
+                  <!-- <th>Reason</th> -->
+                </tr>
+                	<%#= render partial: 'approval', 
+                		collection: approvables %>
+				<% approvable.approvals.each do |approval| %>
+		            <tr>
+		                <td><%= approval.user.first_name %></td>
+		                <td></td>
+		                <td><%= approval.signed_on.strftime("%d %b %Y") %></td>
+		                <td><%#= image_tag(approval.signature, data: { title: 'signature' }, height: 16) %></td>
+		                <!-- <td><span class="label label-success">Approved</span></td> -->
+		            </tr>				
+				<% end -%>
+
+
+              </tbody>
+          	</table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>

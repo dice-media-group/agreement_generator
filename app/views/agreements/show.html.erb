@@ -80,7 +80,7 @@
     <% end %>
 
     <% if @agreement.approvals.count > 0 %>
-      <%= render "approvals_table"  %> 
+      <%= render "approvals/approvals", locals: {approvable: @agreement}  %> 
      
     <% else %>
       <table class="approvals-table">
