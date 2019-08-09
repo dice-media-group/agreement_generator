@@ -1,0 +1,14 @@
+
+<%= form_with(url: agreement_agreement_approval_steps_url(agreement_id: params[:agreement_id])) do |form| %>
+  
+  <p>current_user: <%= "#{current_user.first_name}" %></p>
+  
+  <%= form.label :signature %>
+  <%= form.text_field :signature %>
+
+  <%= hidden_field_tag 'id', params[:id] %>  
+  <%= hidden_field(:approval, :approvable_id, value: @approval.approvable_id ) %>
+  <%= hidden_field(:approval, :approvable_type, value: @approval.approvable_type ) %>
+  <%= form.submit class: 'btn btn-primary signature_pad_save', value: "continue" %>
+
+<% end -%>

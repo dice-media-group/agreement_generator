@@ -24,23 +24,23 @@
 <h1><%= @document.name %> </h1>
 <!-- render agreement members partial -->
 <section class="document-content scrollable">
-<%= render partial: 'introduction' %>
+<%= render partial: 'approvals/introduction' %>
 <!-- render agreement document partial -->
-	<%= render partial: 'main_document' %>	
+	<%= render partial: 'approvals/main_document' %>	
 
 <!-- render agreement signature partial -->
 
 <!-- conditionally render deliveables partial -->
 <hr>
-<%= render partial: 'deliverables' %>
+<%= render partial: 'approvals/deliverables' %>
 
 <!-- conditionally render scheduled payments partial -->
 <hr>
-<%= render partial: 'payment_schedule' %>
+<%= render partial: 'approvals/payment_schedule' %>
 </section>
 
 <hr>
-<%= render 'form', approval: @approval %>
+<%= render 'approvals/form', approval: @approval %>
 
 <!-- scripts for signature_pad -->
 

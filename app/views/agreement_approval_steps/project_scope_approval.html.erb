@@ -1,0 +1,7 @@
+<h1>project_scope_approval</h1>
+<%= @approvable %>
+
+<br>
+_header.html.erb
+<%= render "header", { headline: "Welcome", approvable: @approvable } %>
+<%= render 'form', approvable: @approvable %>
