@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   get 'agreement_previews/show'
+  get '/zoo', to: 'agreement_approval_steps#project_scope_approval'
+
   resources :agreement_previews, only: [:show]
   # resources :agreement_authorization_requests, only: [:new, :create]
 
@@ -9,16 +11,23 @@ Rails.application.routes.draw do
   resources :approvals
   resources :sections
   resources :deliverables
+  resources :agreement_approval_steps
+
 
   resources :projects do
     resources :project_users, path: :users, module: :projects
     resources :agreements
   end
 
+  resources :payment_schedules do
+        resources :approvals, shallow: true
+  end
   resources :agreements do
     resources :deliverables, shallow: true
     resources :scheduled_payments, shallow: true
     resources :approvals, shallow: true
+
+    resources :agreement_approval_steps
     resources :approval_requests, path: :approval_requests, module: :agreements
 
 

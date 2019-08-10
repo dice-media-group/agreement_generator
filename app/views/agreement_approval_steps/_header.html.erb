@@ -1,0 +1,9 @@
+<br>
+_header.html.erb
+<br>
+<h1>project: <%=  @project.name %></h1>
+<h2><%= "#{@document.name}:  #{@approvable.class.to_s.titleize} Addendum" %></h2>
+<p>
+	created_at: <%= @approvable.created_at %>
+</p>
+

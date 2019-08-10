@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_04_043003) do
+ActiveRecord::Schema.define(version: 2019_08_05_002808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,14 +84,14 @@ ActiveRecord::Schema.define(version: 2019_08_04_043003) do
   end
 
   create_table "approvals", force: :cascade do |t|
-    t.bigint "agreement_id", null: false
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.binary "signature"
     t.datetime "signed_on"
-    t.index ["agreement_id"], name: "index_approvals_on_agreement_id"
+    t.string "approvable_type"
+    t.integer "approvable_id"
     t.index ["user_id"], name: "index_approvals_on_user_id"
   end
 
@@ -294,7 +294,6 @@ ActiveRecord::Schema.define(version: 2019_08_04_043003) do
   add_foreign_key "agreements", "documents"
   add_foreign_key "agreements", "users"
   add_foreign_key "approval_requests", "agreements"
-  add_foreign_key "approvals", "agreements"
   add_foreign_key "approvals", "users"
   add_foreign_key "contact_details", "documents"
   add_foreign_key "deliverables", "agreements"

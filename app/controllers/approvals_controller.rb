@@ -30,7 +30,7 @@ class ApprovalsController < ApplicationController
   # POST agreements/x/approvals
   # POST agreements/x//approvals.json
   def create
-    @approval = @agreement.approvals.new(approval_params)
+    @approval = @approvable.approvals.new(approval_params)
     @approval.user = current_user
     @approval.signed_on = DateTime.now
 
