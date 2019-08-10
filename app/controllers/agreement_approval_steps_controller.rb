@@ -33,12 +33,20 @@ class AgreementApprovalStepsController < ApplicationController
 
 
   def create
-    # @approvable = wizard_step_approvable
-    approval_step   = AgreementApprovalStep.new(agreement_id: params[:agreement_id], step_params_id: params[:id])
+    approval_step             = AgreementApprovalStep.new(agreement_id: params[:agreement_id], step_params_id: params[:id])
+    @approvable               = approval_step.wizard_step_approvable
 
-    @approval =  approval_step.wizard_step_approvable.approvals.new(approval_params)
-    @approval.user = current_user
+    @approval                 =  approval_step.wizard_step_approvable.approvals.new(approval_params)
+    @approval.user            = current_user
+    @approval.signed_on       = DateTime.now
+    # @approval.signature = params[:signature]
+
+    @approval.approvable_type = @approvable.class.to_s
+    @approval.approvable_id   = @approvable.id
+
     @approval.signature = true
+
+    
     if @approval.save!
       if approval_step.next_step && params[:commit].downcase.include?('continue')
         redirect_to agreement_agreement_approval_step_path(params[:agreement_id], approval_step.next_step)
