@@ -62,5 +62,9 @@ class AgreementApprovalStep
       current_step_index = self.steps.index(step)
       next_step = steps[current_step_index+1]
     end
+
+    def step_document_partial
+    	"#{step}_document"
+    end
  	
 end
