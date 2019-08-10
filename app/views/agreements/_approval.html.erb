@@ -1,7 +1,7 @@
             <tr>
                 <td><%= approval.user.first_name %></td>
                 <td></td>
-                <td><%= approval.signed_on.strftime("%d %b %Y") %></td>
+                <td><%= approval.signed_on.strftime("%d %b %Y")  if approval.signed_on %></td>
                 <td><%#= image_tag(approval.signature, data: { title: 'signature' }, height: 16) %></td>
                 <!-- <td><span class="label label-success">Approved</span></td> -->
             </tr>
