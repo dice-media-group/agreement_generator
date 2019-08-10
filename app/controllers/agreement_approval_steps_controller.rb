@@ -16,9 +16,11 @@ class AgreementApprovalStepsController < ApplicationController
   def show
       approval_step   = AgreementApprovalStep.new(agreement_id: params[:agreement_id], step_params_id: params[:id])
       if approval_step.step.present?
+        @agreement      = approval_step.agreement
         @approvable     = approval_step.wizard_step_approvable
         @project        = approval_step.project
         @document       = approval_step.document
+        @step_document  = approval_step.step_document_partial
 
         @approval                 = Approval.new
         @approval.approvable_type = @approvable.class.to_s

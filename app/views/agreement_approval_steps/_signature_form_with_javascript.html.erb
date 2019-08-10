@@ -1,14 +1,4 @@
 <h1>project: <%=  @project.name %></h1>
-<h2>
-	<%= "#{@document.name}:  #{@approvable.class.to_s.titleize}" %>
-	<% if params[:id] != "agreement_approval" %>
-		Addendum
-	<% end -%>		
-</h2>
-<p>
-	created_at: <%= @approvable.created_at %>
-</p>
-
 
 <style>
 	.card{
@@ -36,10 +26,10 @@
 <h1><%= @document.name %> </h1>
 <!-- render agreement members partial -->
 <section class="document-content scrollable">
-<%= render partial: 'approvals/introduction' %>
-<!-- render agreement document partial -->
-	<%#= render partial: 'approvals/main_document' %>	
 
+<!-- render approval_document partial -->
+
+<%= render @step_document %>
 <!-- render agreement signature partial -->
 
 <!-- conditionally render deliveables partial -->
