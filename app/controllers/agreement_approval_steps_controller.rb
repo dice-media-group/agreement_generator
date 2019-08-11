@@ -23,9 +23,6 @@ class AgreementApprovalStepsController < ApplicationController
         @step_document  = approval_step.step_document_partial
 
         @approval                 = Approval.new
-        @approval.approvable_type = @approvable.class.to_s
-        @approval.approvable_id   = @approvable.id
-
         render approval_step.step
         
       else
