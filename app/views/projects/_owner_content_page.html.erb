@@ -1,33 +1,32 @@
 <div class="project-content">
 	<div class="col-md-6">
-	 <h3>Project Members</h3>
-		<%= form_for [@project, ProjectUser.new]  do |f| %>
-		 	<div class="input-group">
-	            <span class="input-group-addon">
-	            	<i class="fa fa-envelope"></i>
-	            </span>
-	            <%= f.text_field :email, 
-	            	required: true, 
-	            	class: "form-control"
-	            %>
-	            <span class="input-group-btn">
-	              <%= f.submit "invite to project", class: "btn btn-info"%>
-	            </span>
+		 <h3>Project Members</h3>
+			<%= form_for [@project, ProjectUser.new]  do |f| %>
+			 	<div class="input-group">
+		            <span class="input-group-addon">
+		            	<i class="fa fa-envelope"></i>
+		            </span>
+		            <%= f.text_field :email, 
+		            	required: true, 
+		            	class: "form-control"
+		            %>
+		            <span class="input-group-btn">
+		              <%= f.submit "invite to project", class: "btn btn-info"%>
+		            </span>
 
 
-	        </div>
+		        </div>
 
-	<!--  -->
-			<%#= f.submit "invite to project", class: "btn btn-info"%>
-		<% end -%>
-
-	 <% @project.users.each do |user| %>
-	 	<%= user.email %>
-	 	
-	 <% end -%>
-	 
-
+		<!--  -->
+				<%#= f.submit "invite to project", class: "btn btn-info"%>
+			<% end -%>
+		<ul class="project-members-list">
+			 <% @project.users.each do |user| %>
+			 	<li class="project-member"><%= user.email %></li>
+			 <% end -%>			
+		</ul>
 	</div>
+	
 	<div class="col-md-6">
 		<h3>Agreements
 			<%= link_to new_project_agreement_path(@project), class: 'btn btn-success btn-lg' do %>

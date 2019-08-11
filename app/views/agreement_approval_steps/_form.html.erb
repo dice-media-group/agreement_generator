@@ -1,0 +1,43 @@
+
+<%= form_with(model: approval, url: agreement_agreement_approval_steps_url(agreement_id: params[:agreement_id])) do |form| %>
+  
+  <% if approval.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(approval.errors.count, "error") %> prohibited this approval from being saved:</h2>
+
+      <ul>
+      <% approval.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!-- id of the step -->
+    <%= hidden_field_tag 'id', params[:id] %>  
+  <!--  -->
+  <%= form.hidden_field :signature, class: 'signature_pad_input' %>
+
+  <div class="signature_pad text-center">
+    <div class="signature_pad_body">
+      <canvas></canvas>
+    </div>
+    <div class="signature_pad_footer">
+      <div class="text-muted">Sign above</div>
+    </div>
+  </div>
+
+<!--  -->
+
+
+  <div class="form-group">
+
+    <%= form.submit class: 'btn btn-primary signature_pad_save', value: "continue" %>
+
+    <% if approval.persisted? %>
+      <%= link_to "Cancel", approval, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", approvals_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+
+<% end %>

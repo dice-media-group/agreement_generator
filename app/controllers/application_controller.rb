@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :masquerade_user!
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  rescue
+    render_404
+  end
+
+  def render_404
+  	render file: "#{Rails.root}/public/404", :layout => false, :status => 404
+  end
+
   protected
 
     def configure_permitted_parameters

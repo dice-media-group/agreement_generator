@@ -168,11 +168,14 @@
 		<i class="fa fa-book"></i> <span>Projects</span>
     	<% end -%>
  	</li>
+
+  <% if current_user.admin? %>
  	<li>
  		<%= link_to documents_path  do %>
 		<i class="fa fa-book"></i> <span>Documents</span>
     	<% end -%>
  	</li>
+  <% end -%>
 <!--  	<li>
  		<%= link_to approvals_path  do %>
 		<i class="fa fa-book"></i> <span>Approvals</span>

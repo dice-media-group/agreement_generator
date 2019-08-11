@@ -9,7 +9,7 @@
 	<% @agreement.approvals.each do |approval| %>
 		<div class="full-name">
 			<%= image_tag(approval.signature, size: "50x100") %>	
-			<%= approval.signed_on.strftime("%d %b %Y") %>
+			<%= approval.signed_on.strftime("%d %b %Y") if approval.signed_on %>
 
 		</div>
 	<% end -%>

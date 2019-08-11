@@ -1,3 +1,5 @@
+<h1>project: <%=  @project.name %></h1>
+
 <style>
 	.card{
 		width: 24%;
@@ -22,25 +24,13 @@
 </style>
 
 <h1><%= @document.name %> </h1>
-<!-- render agreement members partial -->
 <section class="document-content scrollable">
-<%= render partial: 'approvals/introduction' %>
-<!-- render agreement document partial -->
-	<%= render partial: 'approvals/main_document' %>	
-
-<!-- render agreement signature partial -->
-
-<!-- conditionally render deliveables partial -->
-<hr>
-<%= render partial: 'approvals/deliverables' %>
-
-<!-- conditionally render scheduled payments partial -->
-<hr>
-<%= render partial: 'approvals/payment_schedule' %>
+<!-- render agreement stpe partial -->
+	<%= render @step_document %>
 </section>
 
 <hr>
-<%= render 'approvals/form', approval: @approval %>
+<%= render 'form', approval: @approval %>
 
 <!-- scripts for signature_pad -->
 

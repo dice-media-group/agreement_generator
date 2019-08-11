@@ -1,3 +1,6 @@
 class PaymentSchedule < ApplicationRecord
-  belongs_to :document
+  has_many 		:scheduled_payments, 	dependent: :destroy
+  has_many 		:agreements, 			through: :scheduled_payments
+  has_many 		:approvals, 			as: :approvable
+
 end
