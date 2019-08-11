@@ -20,9 +20,13 @@
 		<!--  -->
 				<%#= f.submit "invite to project", class: "btn btn-info"%>
 			<% end -%>
-		<ul class="project-members-list">
+		<ul class="list-group project-members-list">
 			 <% @project.users.each do |user| %>
-			 	<li class="project-member"><%= user.email %></li>
+			 	<li class="list-group-item project-member">
+			 		<%= mail_to user.email %>
+			 		<%= "(#{user.first_name})" if user.first_name %>
+
+			 	</li>
 			 <% end -%>			
 		</ul>
 	</div>
@@ -34,9 +38,9 @@
 			<% end %>
 
 		</h3>
-			<ul>
+			<ul  class="list-group">
 		<% @project.agreements.each do |agreement| %>
-			<li>
+			<li  class="list-group-item">
 				<!-- model button -->
 				<!-- start modal -->
 				<div class="box-body">
