@@ -24,21 +24,9 @@
 </style>
 
 <h1><%= @document.name %> </h1>
-<!-- render agreement members partial -->
 <section class="document-content scrollable">
-
-<!-- render approval_document partial -->
-
-<%= render @step_document %>
-<!-- render agreement signature partial -->
-
-<!-- conditionally render deliveables partial -->
-<hr>
-<%#= render partial: 'approvals/deliverables' %>
-
-<!-- conditionally render scheduled payments partial -->
-<hr>
-<%#= render partial: 'approvals/payment_schedule' %>
+<!-- render agreement stpe partial -->
+	<%= render @step_document %>
 </section>
 
 <hr>
