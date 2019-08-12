@@ -91,7 +91,10 @@
                   <%= link_to new_agreement_approval_path(@agreement) do %>
                     (+)
                   <% end %>
-
+                  <%= link_to agreement_agreement_approval_step_path(@agreement, "agreement_approval") do %>
+                    (agreement approval)
+                  <% end %>
+agreement_agreement_approval_steps_url(agreement_id: params[:agreement_id])
                 </th>
             </tr>
             <tr><td>No Approvals listed</td></tr>
