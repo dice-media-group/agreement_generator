@@ -1,32 +1,7 @@
 <div class="container">
-    <div class="jumbotron">
-        <h1>Projects</h1>
-        <p class="lead">Got a new client?  Need contract or two?  Let's create a project to keep everything together.</p>
-        <p>
-          <%= link_to new_project_path, class: 'btn btn-success btn-lg' do %>
-            (+) New Project
-          <% end %>
-        </p>
-    </div>
-    <div class="row">
-      <% @projects.each do |project| %>
-        <div class="col-md-6 col-lg-4 col-xl-3">
-          <h2><%= project.name %>
-              <%= link_to project, class: 'btn btn-primary' do %>
-                Edit
-              <% end %>            
-          </h2>
-          <ul>
-            <% project.agreements.each do |agreement| %>
-              <li>
-                <%= link_to agreement do %>
-                  <%= agreement.document.name%>
-                <% end %>
-              </li>
-
-            <% end -%>
-          </ul>
-        </div>      
-      <% end -%>
-    </div>
+  <% if current_user.projects_host? %>
+      <%= render partial: 'projects/projects_host/index', locals: {projects: @projects} %>
+  <% else %>
+      <%= render :partial => 'projects/client_user/index' %>
+  <% end -%>
 </div>

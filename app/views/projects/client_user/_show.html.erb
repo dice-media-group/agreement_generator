@@ -1,0 +1,15 @@
+<div class="page-header">
+  <%= link_to projects_path, class: 'btn btn-default' do %>
+    All Projects
+  <% end %>
+  <h1><%= @project.name %></h1>
+
+	 <% if @project_membership.role == "owner" %>
+		<%= render partial: 'owner_content_page' %>
+	<% else %>
+			<%= render partial: 'default_content_page' %>
+
+	<% end -%>
+
+
+</div>

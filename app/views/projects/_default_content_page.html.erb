@@ -1,1 +1,35 @@
-_default_show_page.html.erb ***
+<!-- _default_show_page.html.erb *** -->
+
+<div class="project-content">
+	<div class="col-md-6">
+		 <h3>Project Members</h3>
+
+		<ul class="list-group project-members-list">
+			 <% @project.users.each do |user| %>
+			 	<li class="list-group-item project-member">
+			 		<%= mail_to user.email %>
+			 		<%= "(#{user.first_name})" if user.first_name %>
+
+			 	</li>
+			 <% end -%>			
+		</ul>
+	</div>
+	
+	<div class="col-md-6">
+		<h3>Agreements
+			<%= link_to new_project_agreement_path(@project), class: 'btn btn-success btn-lg' do %>
+				(+) New Agreement
+			<% end %>
+
+		</h3>
+			<ul  class="list-group">
+				<li  class="list-group-item">approved agreements<br />Link leads to pdf. </li>
+			<% @project.agreements.each do |agreement| %>
+
+			<% end -%>
+			</ul>
+	</div>
+
+</div>
+
+
