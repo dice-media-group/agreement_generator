@@ -122,6 +122,16 @@
 
                 <p>
                   <%= "#{current_user.first_name} #{current_user.last_name}"  %> <!-- - Web Developer -->
+                  <br>
+                  <!-- user status emoji's -->
+                  <% user_status = {projects_host:'🍍', admin: '📛'}%>
+                  <% if current_user.projects_host? %>
+                    <span class="user_status"><%= user_status[:projects_host] %></span>
+                  <% end -%>
+                  <% if current_user.admin? %>
+                    <span class="user_status"><%= user_status[:admin] %></span>
+                  <% end -%>
+                  <br>
                   <!-- <small>Member since Nov. 2012</small> -->
                 </p>
               </li>

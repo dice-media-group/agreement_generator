@@ -1,0 +1,17 @@
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <h2><%= link_to project_listing do %>
+                <%= project_listing.name %>
+              <% end %>            
+          </h2>
+          <ul>
+            <% project_listing.agreements.each do |agreement| %>
+            <!-- this should be listed if the ProjectUser has been asked for approval of the document -->
+<!--               <li>
+                <%#= link_to agreement do %>
+                  <%#= agreement.document.name%>
+                <%# end %>
+              </li>
+ -->
+            <% end -%>
+          </ul>
+        </div>      

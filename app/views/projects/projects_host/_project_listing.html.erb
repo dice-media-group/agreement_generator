@@ -1,0 +1,17 @@
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <h2><%= project_listing.name %>
+              <%= link_to project_listing, class: 'btn btn-primary' do %>
+                Edit
+              <% end %>            
+          </h2>
+          <ul>
+            <% project_listing.agreements.each do |agreement| %>
+              <li>
+                <%= link_to agreement do %>
+                  <%= agreement.document.name%>
+                <% end %>
+              </li>
+
+            <% end -%>
+          </ul>
+        </div>      

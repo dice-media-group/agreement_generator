@@ -1,20 +1,7 @@
-	
-
-<div class="page-header">
-  <%= link_to projects_path, class: 'btn btn-default' do %>
-    All Projects
-  <% end %>
-  <%= link_to edit_project_path(@project), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
-  <h1><%= @project.name %></h1>
-
-	 <% if @project_membership.role == "owner" %>
-		<%= render partial: 'owner_content_page' %>
-	<% else %>
-			<%= render partial: 'default_content_page' %>
-
-	<% end -%>
-
-
+<div class="container">
+  <% if current_user.projects_host? %>
+      <%= render partial: 'projects/projects_host/show', locals: {project: @project} %>
+  <% else %>
+      <%= render :partial => 'projects/client_user/show' %>
+  <% end -%>
 </div>
