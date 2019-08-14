@@ -5,10 +5,15 @@
 		 <h3>Project Members</h3>
 
 		<ul class="list-group project-members-list">
-			 <% @project.users.each do |user| %>
+			 <% @project.project_users.each do |project_user| %>
 			 	<li class="list-group-item project-member">
-			 		<%= mail_to user.email %>
-			 		<%= "(#{user.first_name})" if user.first_name %>
+			 		<%# role = @project.project_users.find_by(user: 2).role %>
+			 		<%# if role == "owner"  %>
+			 			<!-- 👑 <%#= role.to_s %> -->
+			 		<%# end -%>
+			 		<%= "👑" if project_user.role %>
+			 		<%= mail_to project_user.user.email %>
+			 		<%= "(#{project_user.user.first_name})" if project_user.user.first_name %>
 
 			 	</li>
 			 <% end -%>			
