@@ -2,6 +2,6 @@
   <% if current_user.projects_host? %>
       <%= render partial: 'projects/projects_host/show', locals: {project: @project} %>
   <% else %>
-      <%= render :partial => 'projects/client_user/show' %>
+      <%= render :partial => 'projects/client_user/show', locals: {project: @project} %>
   <% end -%>
 </div>

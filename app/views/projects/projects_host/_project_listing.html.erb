@@ -1,17 +1,31 @@
-        <div class="col-md-6 col-lg-4 col-xl-3">
-          <h2><%= project_listing.name %>
-              <%= link_to project_listing, class: 'btn btn-primary' do %>
-                Edit
-              <% end %>            
-          </h2>
-          <ul>
-            <% project_listing.agreements.each do |agreement| %>
-              <li>
-                <%= link_to agreement do %>
-                  <%= agreement.document.name%>
-                <% end %>
-              </li>
+<div class="col-md-6 col-lg-4 col-xl-3">
+  <!-- insert conditional that current_user of ProjectUser has role "owner" -->
+  <% if project_listing.project_users.find_by(user: current_user).role == "owner" %>
+    <h2><%= project_listing.name %>
+        <%= link_to project_listing, class: 'btn btn-primary' do %>
+          Edit
+        <% end %>            
+    </h2>
+    <ul>
+      <% project_listing.agreements.each do |agreement| %>
+        <li>
+          <%= link_to agreement do %>
+            <%= agreement.document.name%>
+          <% end %>
+        </li>
 
-            <% end -%>
-          </ul>
-        </div>      
+      <% end -%>
+    </ul>
+    
+  
+
+  <% else %>
+    
+    <h2><%= link_to project_listing do %>
+          <%= project_listing.name %>
+        <% end %>            
+    </h2>
+
+
+  <% end -%>
+</div>      
