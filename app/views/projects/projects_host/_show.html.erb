@@ -2,9 +2,13 @@
   <%= link_to projects_path, class: 'btn btn-default' do %>
     All Projects
   <% end %>
-  <%= link_to edit_project_path(@project), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
+
+  <% if @project_membership.role == "owner" %>
+    <%= link_to edit_project_path(@project), class: 'btn btn-primary' do %>
+      Edit
+    <% end %>
+  <% end -%>
+
   <h1><%= @project.name %></h1>
 
 	 <% if @project_membership.role == "owner" %>
