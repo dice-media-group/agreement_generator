@@ -2,13 +2,6 @@
 <h4 class="modal-title">project name: <%= @project.name %></h4>
 
 
-<ul>
-	<% @project.users.each do |user| %>
-		<p>user first name: <%= user.first_name %></p>
-		<p>user last name: <%= user.last_name %></p>
-		<p>user email: <%= user.email %></p>
-	<% end -%>
-</ul>
 <%= form_with scope: :approval_request, url: agreement_approval_requests_path(@agreement)  do |f| %>
       <div class="input-group">
               <span class="input-group-addon">

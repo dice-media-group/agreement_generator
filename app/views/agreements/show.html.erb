@@ -8,7 +8,7 @@
   <%= link_to agreement_preview_path(@agreement, :format => 'pdf'), class: 'btn btn-primary' do %>
     <i class="fa  fa-file-pdf-o"></i> PDF Copy
   <% end %>
-  <%= link_to edit_agreement_path(@agreement), class: 'btn btn-primary' do %>
+  <%= link_to new_agreement_approval_request_path(@agreement), class: 'btn btn-primary' do %>
     <i class="fa fa-share-alt"></i> Share for Approval
   <% end %>
 
