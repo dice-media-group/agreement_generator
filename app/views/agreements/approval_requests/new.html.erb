@@ -10,7 +10,7 @@
                 <%= f.collection_select :recipient_id, 
                   @project.users, 
                   :id, 
-                  :first_name, 
+                  :email, 
                   class: "form-control",
                   required: true, 
                   prompt: true %>
