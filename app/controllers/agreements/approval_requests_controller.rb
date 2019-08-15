@@ -3,6 +3,8 @@ class Agreements::ApprovalRequestsController < ApplicationController
   	before_action :authenticate_user!
 	before_action :set_agreement
 
+  layout        "crm_docs"
+
 	def new
 		@project = @agreement.project
 		@project_membership = ProjectUser.where(project: @project, user: current_user).first
@@ -16,15 +18,21 @@ class Agreements::ApprovalRequestsController < ApplicationController
     	if User.find(params[:approval_request][:recipient_id])
     		@recipient = User.find(params[:approval_request][:recipient_id])
 			@approval_request = @agreement.approval_requests.new(approval_request_params)
-			if @approval_request.save
+# 
+		    respond_to do |format|
+		      if @agreement.save
 				# UserMailer.with(user: @recipient).welcome_email.deliver_now
+		        format.html { redirect_to @approval_request.agreement.project, notice: 'Reqest for approval was successfully sent.' }
+		        format.json { render :show, status: :created, location: @agreement }
+		      else
+		        format.html { render :new }
+		        format.json { render json: @agreement.errors, status: :unprocessable_entity }
+		      end
+		    end
+# 
 
-				redirect_to :root, notice: 	"Success"
-			else
-				redirect_to :root, alert: 	"Failure"
-			end		
     	else
-			redirect_to :root, alert: 	"Failure"
+        	redirect_to :root, notice: 'Reqest for approval failed.'
     	end
 
 

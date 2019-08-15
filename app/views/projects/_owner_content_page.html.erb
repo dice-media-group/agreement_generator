@@ -71,9 +71,11 @@
 			<ul  class="list-group">
 		<% @project.agreements.each do |agreement| %>
 			<li  class="list-group-item">
+				<!-- ## modal does not refresh  with turbolinks -->
+				<!-- ## commenting out modal until fix is found -->
 				<!-- model button -->
 				<!-- start modal -->
-				<div class="box-body">
+<!-- 				<div class="box-body">
 					<button type="button" 
 						class="btn btn-default" 
 						data-toggle="modal" 
@@ -81,9 +83,12 @@
 						Request Approval
 					</button>
         		 </div>
-
-				<%= render partial: 'share_agreement', locals: {agreement: agreement} %>
+ -->
+				<%#= render partial: 'share_agreement', locals: {agreement: agreement} %>
 				<!-- finish modal -->
+  <%= link_to new_agreement_approval_request_path(agreement), class: 'btn btn-primary' do %>
+    <i class="fa fa-share-alt"></i> Share for Approval
+  <% end %>
 				<%= link_to agreement do %>
                   <%= agreement.document.name%>
                 <% end %>
