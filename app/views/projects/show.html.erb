@@ -1,3 +1,5 @@
+<% content_for(:title, @project.name)%>
+
 <div class="container">
   <% if current_user.projects_host? %>
       <%= render partial: 'projects/projects_host/show', locals: {project: @project} %>
