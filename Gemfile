@@ -72,7 +72,7 @@ gem 'whenever', require: false
 
 ## app-specific
 gem "aws-sdk-s3", require: false #active_storage
-gem 'nokogiri', '~> 1.10', '>= 1.10.4'
+gem 'nokogiri', '~> 1.11'
 # fix for administrate bug https://github.com/thoughtbot/administrate/issues/1339
 
 gem 'pundit', '~> 2.0', '>= 2.0.1'
